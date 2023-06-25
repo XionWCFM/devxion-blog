@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { allPosts } from '@/.contentlayer/generated';
 import React from 'react';
@@ -5,6 +6,7 @@ import React from 'react';
 interface pageProps {}
 
 const page = ({}: pageProps) => {
+
   return (
     <div className="">
       <div className=" grid grid-cols-1 lg:grid-cols-2">

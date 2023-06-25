@@ -29,9 +29,9 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
-    published: {
-      type: 'boolean',
-      default: true,
+    date: {
+      type: 'date',
+      required: true,
     },
     tags: {
       type: 'string',
