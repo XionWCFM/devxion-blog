@@ -2,8 +2,8 @@ import FaceBook from '@/public/icons/facebook.svg';
 import GitHub from '@/public/icons/github.svg';
 import Insta from '@/public/icons/insta.svg';
 import Moon from '@/public/icons/moon.svg';
-import Sun from '@/public/icons/search.svg';
-import Search from '@/public/icons/sun.svg';
+import Sun from '@/public/icons/sun.svg';
+import Search from '@/public/icons/search.svg';
 
 interface IconType {
   src: typeof FaceBook;

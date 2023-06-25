@@ -18,3 +18,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #aeaca6;
 }
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(202, 204, 206, 0.04);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #474c50;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(202, 204, 206, 0.3);
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
