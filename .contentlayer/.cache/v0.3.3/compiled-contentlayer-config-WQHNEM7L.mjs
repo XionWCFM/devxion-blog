@@ -1,22 +1,22 @@
 // contentlayer.config.js
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 var computedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => `${doc._raw.flattenedPath}`
+    resolve: (doc) => `/${doc._raw.flattenedPath}`
   },
   slugAsParams: {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/")
   }
 };
-var Docs = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `complete-nextjs/**/*.mdx`,
+var Post = defineDocumentType(() => ({
+  name: "Post",
+  filePathPattern: `post/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
@@ -24,7 +24,7 @@ var Docs = defineDocumentType(() => ({
       required: true
     },
     description: {
-      type: string
+      type: "string"
     },
     published: {
       type: "boolean",
@@ -34,8 +34,8 @@ var Docs = defineDocumentType(() => ({
   computedFields
 }));
 var contentlayer_config_default = makeSource({
-  contentDirPath: "src/content",
-  documentTypes: [Doc],
+  contentDirPath: "./content",
+  documentTypes: [Post],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -70,7 +70,7 @@ var contentlayer_config_default = makeSource({
   }
 });
 export {
-  Docs,
+  Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-7ZRFWETT.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-WQHNEM7L.mjs.map
