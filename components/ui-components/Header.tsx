@@ -8,7 +8,7 @@ import { cn } from '@/utils';
 
 const HighlightVariants = cva(
   `transition-all duration-300 
-  hover:text-yellow-400 hover:font-extrabold 
+  hover:text-yellow-400 hover:font-extrabold
   `,
   {
     variants: {
@@ -38,7 +38,7 @@ const Header = ({}: HeaderProps) => {
               xion
             </p>
           </Link>
-          <div className=" lg:flex gap-4 lg:gap-8 grid grid-cols-2">
+          <div className=" flex gap-4 lg:gap-8 flex-col lg:flex-row lg:items-start items-end">
             {navigateArray.map((item) => (
               <Link
                 href={`/${item}`}
