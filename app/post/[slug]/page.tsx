@@ -9,10 +9,6 @@ interface pageProps {
     slug: string;
   };
 }
-export const runtime = 'edge';
-export const generateStaticParams = () => {
-  return allPosts.map((post) => ({ params: { slug: post.slugAsParams } }));
-};
 
 const getDocFromparams = (slug: string) => {
   const post = allPosts.find((doc) => doc.slugAsParams === slug);
@@ -20,8 +16,8 @@ const getDocFromparams = (slug: string) => {
   return post;
 };
 
-const page = async ({ params: { slug } }: pageProps) => {
-  const post = await getDocFromparams(slug);
+const page = ({ params: { slug } }: pageProps) => {
+  const post = getDocFromparams(slug);
 
   return (
     <div>
