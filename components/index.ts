@@ -9,3 +9,5 @@ export { default as DarkModeToggleBtn } from './helper-components/DarkModeToggle
 // ui
 export { default as Header } from './ui-components/Header';
 export { default as Footer } from './ui-components/Footer';
+export { default as PostCard } from './ui-components/PostCard';
+export { default as PostTitle } from './ui-components/PostTitle';

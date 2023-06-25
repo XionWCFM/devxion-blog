@@ -1,8 +1,9 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
-import { allPosts } from 'contentlayer/generated';
 import Mdx from '@/components/helper-components/Mdx';
-import { GetStaticPaths } from 'next';
+import PostTitle from '@/components/ui-components/PostTitle';
+
+import { getPostFromParams } from '@/utils';
+import { dateFormat } from '@/utils';
 
 interface pageProps {
   params: {
@@ -10,19 +11,22 @@ interface pageProps {
   };
 }
 
-const getDocFromparams = (slug: string) => {
-  const post = allPosts.find((doc) => doc.slugAsParams === slug);
-
-  if (!post) notFound();
-  return post;
-};
-
 const page = ({ params: { slug } }: pageProps) => {
-  const post = getDocFromparams(slug);
-  console.log(post);
+  const post = getPostFromParams(slug);
+  // @ts-ignore
+  const date = dateFormat(post.date);
+
   return (
     <div>
-      <Mdx code={post.body.code} />
+      <PostTitle
+        title={post.title}
+        description={post.description}
+        tags={post.tags}
+        date={date}
+      />
+      <div>
+        <Mdx code={post.body.code} />
+      </div>
     </div>
   );
 };
