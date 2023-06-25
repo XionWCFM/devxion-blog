@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx contentlayer build && npx @cloudflare/next-on-pages@1",
+    "build": "npx contentlayer build && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -18,7 +18,7 @@
     "contentlayer": "^0.3.3",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
-    "next": "13.4.7",
+    "next": "^13.4.2",
     "next-contentlayer": "^0.3.3",
     "next-theme": "^0.1.5",
     "postcss": "8.4.24",
