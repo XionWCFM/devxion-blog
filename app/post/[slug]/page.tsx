@@ -2,6 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { allPosts } from 'contentlayer/generated';
 import Mdx from '@/components/helper-components/Mdx';
+import { GetStaticPaths } from 'next';
 
 interface pageProps {
   params: {
@@ -9,16 +10,18 @@ interface pageProps {
   };
 }
 
-const getDocFromparams = async (slug: string) => {
+export const generateStaticParams = () => {
+  return allPosts.map((post) => ({ params: { slug: post.slugAsParams } }));
+};
+
+const getDocFromparams = (slug: string) => {
   const post = allPosts.find((doc) => doc.slugAsParams === slug);
-
   if (!post) notFound();
-
   return post;
 };
 
-const page = async ({ params: { slug } }: pageProps) => {
-  const post = await getDocFromparams(slug);
+const page = ({ params: { slug } }: pageProps) => {
+  const post = getDocFromparams(slug);
 
   return (
     <div>
