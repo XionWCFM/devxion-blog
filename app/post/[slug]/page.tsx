@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { allPosts } from 'contentlayer/generated';
-import { Mdx } from '@/components/helper-components/Mdx';
+import Mdx from '@/components/helper-components/Mdx';
 
 interface pageProps {
   params: {

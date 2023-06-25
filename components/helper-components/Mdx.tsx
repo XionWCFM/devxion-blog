@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Image from 'next/image';
+import type { MDXComponents } from 'mdx/types';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { cn } from '@/utils';
 
-const components = {
+const components: MDXComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
@@ -150,14 +151,13 @@ const components = {
       {...props}
     />
   ),
-  Image,
 };
 
 interface MdxProps {
   code: string;
 }
 
-export function Mdx({ code }: MdxProps) {
+export default function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
