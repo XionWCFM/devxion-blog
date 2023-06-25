@@ -13,11 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="text-gray-700 transition-colors duration-300 dark:text-gray-200 dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white px-12 py-10 overflow-x-hidden min-h-screen">
-        {' '}
+      <body>
         <Providers>
           <Header />
-          {children}
+          <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white px-12 py-10 overflow-x-hidden min-h-screen">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>

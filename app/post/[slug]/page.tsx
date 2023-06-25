@@ -12,13 +12,14 @@ interface pageProps {
 
 const getDocFromparams = (slug: string) => {
   const post = allPosts.find((doc) => doc.slugAsParams === slug);
+
   if (!post) notFound();
   return post;
 };
 
 const page = ({ params: { slug } }: pageProps) => {
   const post = getDocFromparams(slug);
-
+  console.log(post);
   return (
     <div>
       <Mdx code={post.body.code} />

@@ -1,28 +1,63 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
+import { cva } from 'class-variance-authority';
+import { cn } from '@/utils';
+
+const HighlightVariants = cva(
+  `transition-all duration-300 
+  hover:text-yellow-400 hover:font-extrabold 
+  `,
+  {
+    variants: {
+      variant: {
+        default: 'hover:scale-110',
+        highlight: ' text-yellow-400 font-extrabold scale-110',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  },
+);
+
+const navigateArray = ['post', 'category', 'cheatsheet', 'about'];
 
 interface HeaderProps {}
 
 const Header = ({}: HeaderProps) => {
+  const currentRoute = usePathname();
   return (
-    <header className=" sticky top-0 z-30">
-      <div className=" flex lg:flex-row flex-col lg:justify-between lg:items-center gap-y-2">
+    <header className=" sticky top-0 z-30 bg-white  pb-2 pt-3 border-b dark:border-gray-200 border-gray-200 dark:bg-black dark:bg-opacity-40 px-12 ">
+      <div className=" flex lg:flex-row flex-col lg:justify-between lg:items-center gap-y-8">
         <div className=" flex items-center gap-12">
           <Link href={'/'}>
-            <p className=" font-extrabold text-5xl cursor-pointer">xion</p>
+            <p className=" font-extrabold text-5xl cursor-pointer transition-all duration-500 hover:scale-110 ">
+              xion
+            </p>
           </Link>
           <div className=" flex gap-4 lg:gap-8">
-            <Link href={'/post'}>post</Link>
-            <Link href={'/category'}>category</Link>
-            <Link href={'/cheatsheet'}>cheatsheet</Link>
-            <Link href={'/about'}>about</Link>
+            {navigateArray.map((item) => (
+              <Link
+                href={`/${item}`}
+                key={item}
+                className={
+                  currentRoute === `/${item}`
+                    ? cn(HighlightVariants({ variant: 'highlight' }))
+                    : cn(HighlightVariants())
+                }
+              >
+                {item}
+              </Link>
+            ))}
           </div>
         </div>
-        <div className="flex gap-4 lg:gap-8">
+        <div className="flex gap-4 lg:gap-8 justify-between ">
           <input
             type="text"
-            className=" rounded-xl pl-4 pr-2 py-1 dark:bg-black dark:bg-opacity-90 dark:text-white bg-gray-200"
+            className=" rounded-xl pl-4 pr-2 py-1 dark:bg-gray-900 lg:dark:bg-black dark:bg-opacity-90 dark:text-white bg-gray-200 focus:border-2 border-yellow-500  "
             placeholder="search"
           />
           <DarkModeToggleBtn />

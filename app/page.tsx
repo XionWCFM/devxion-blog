@@ -1,5 +1,9 @@
 import Image from 'next/image';
 export const runtime = 'edge';
 export default function Home() {
-  return <div className=" h-[5000px]">어엄준엄식</div>;
+  return (
+    <main>
+      <div className=" h-[5000px]">안녕하세요</div>
+    </main>
+  );
 }

@@ -27,10 +27,15 @@ export const Post = defineDocumentType(() => ({
     },
     description: {
       type: 'string',
+      required: true,
     },
     published: {
       type: 'boolean',
       default: true,
+    },
+    tags: {
+      type: 'string',
+      required: true,
     },
   },
   computedFields,
