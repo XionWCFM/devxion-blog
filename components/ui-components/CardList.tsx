@@ -22,7 +22,9 @@ const PostCard = ({ docArray }: PostCardProps) => {
                 <h2 className=" font-extrabold text-2xl text-ellipsis ">
                   {post.title}
                 </h2>
-                <p className=" text-xs">{post.description}</p>
+                <p className=" text-xs text-zinc-400 underline underline-offset-2 pt-1 decoration-dashed">
+                  {post.description}
+                </p>
               </div>
               <div className=" text-xs flex flex-col gap-2 items-end">
                 <Tag>{post.tags}</Tag>

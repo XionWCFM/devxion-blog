@@ -170,7 +170,7 @@ export default function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="mdx">
+    <div className="mdx smooth">
       <Component components={components} />
     </div>
   );

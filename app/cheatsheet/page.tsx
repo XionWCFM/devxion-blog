@@ -14,8 +14,9 @@ const page = ({}: pageProps) => {
   return (
     <div>
       <HeadingParagraph>CHEATSHEET</HeadingParagraph>
-      <Paragraph>각 태그별로 원하는 정보를 찾아볼 수 있습니다.</Paragraph>
-      <Paragraph>부디 도움이 되었으면 좋겠습니다.😉</Paragraph>
+      <Paragraph>
+        잊어버리기 쉽지만 자주 쓰는 코드들을 모아봤습니다 🤭
+      </Paragraph>
       <CardList docArray={allCheatSheets} />
     </div>
   );
