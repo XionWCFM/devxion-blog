@@ -10,7 +10,9 @@ interface PostTitleProps {
 const PostTitle = ({ title, description, tags, date }: PostTitleProps) => {
   return (
     <div className=" flex justify-center items-center flex-col mb-24">
-      <h1 className=" font-extrabold text-6xl mb-4">{title}</h1>
+      <h1 className=" font-extrabold text-2xl md:text-4xl lg:text-6xl mb-4">
+        {title}
+      </h1>
       <p className=" opacity-70 mb-4 underline underline-offset-2">
         {description}
       </p>

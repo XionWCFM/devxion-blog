@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'dev XionWCFM blog',
-  description: 'check my bio',
+  description: 'developer yugiljong',
   metadataBase: new URL('https://devxion-blog.vercel.app'),
   robots: {
     index: true,
@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   viewport: {
     width: 'device-width',
     initialScale: 1,
+  },
+  icons: {
+    icon: '/favicon.ico',
   },
 };
 

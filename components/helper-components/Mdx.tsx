@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
 import Image from 'next/image';
 import type { MDXComponents } from 'mdx/types';
@@ -100,8 +101,16 @@ const components: MDXComponents = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn('rounded-md border', className)} alt={alt} {...props} />
+    <div className=" overflow-hidden w-[300px] md:w-[500px] lg:w-[850px] lg:h-auto mb-2 mx-auto">
+      <img
+        className={cn(
+          'rounded-md border hover:scale-110 transition-transform ease-in-out duration-500',
+          className,
+        )}
+        alt={alt}
+        {...props}
+      />
+    </div>
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
