@@ -1,4 +1,3 @@
-'use client';
 import { allDocuments, DocumentTypes } from '@/.contentlayer/generated';
 import { CardList, HeadingParagraph, Paragraph } from '@/components';
 import { usePathname } from 'next/navigation';
@@ -33,7 +32,6 @@ const tagClassifier = () => {
 const tags = tagClassifier();
 
 const Page = ({ params: { slug } }: pageProps) => {
-  const currentRoute = usePathname().split('/')[2];
   return (
     <section>
       <HeadingParagraph>{slug.toUpperCase()}</HeadingParagraph>
@@ -43,7 +41,7 @@ const Page = ({ params: { slug } }: pageProps) => {
         {Object.keys(tags).map((tag, i) => (
           <div key={`tag${i}`}>
             <Link href={`category/${tag}`}>
-              <Tag className={currentRoute === tag ? 'ct scale-125 mx-3' : ''}>
+              <Tag className={slug === tag ? 'ct scale-125 mx-3' : ''}>
                 {tag}
               </Tag>
             </Link>
