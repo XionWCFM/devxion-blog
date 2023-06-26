@@ -10,10 +10,10 @@ const MoveTop = ({}: MoveTopProps) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <div className=" fixed bottom-6 left-12 lg:right-24">
+    <div className=" fixed bottom-6 right-12 md:right-16 lg:right-24 transition-all hover:scale-125 duration-300">
       <button
         onClick={moveTopHandler}
-        className=" rounded-full p-5  bg-gray-200 dark:bg-gray-800"
+        className=" rounded-full p-5  bg-zinc-600 dark:bg-zinc-200"
       ></button>
     </div>
   );
