@@ -13,7 +13,7 @@ export const generateStaticParams = () => {
 
 const page = ({}: pageProps) => {
   return (
-    <div className="">
+    <div className="smooth">
       <div className=" grid grid-cols-1 lg:grid-cols-2">
         {allCheatSheets.map((cheatsheet) => (
           <Link

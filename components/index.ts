@@ -1,5 +1,8 @@
 // atom
 export { default as Button } from './atom-components/Button';
+export { default as Tag } from './atom-components/Tag';
+export { default as HeadingParagraph } from './atom-components/HeadingParagraph';
+export { default as Paragraph } from './atom-components/Paragraph';
 
 // helper
 export { default as Mdx } from './helper-components/Mdx';

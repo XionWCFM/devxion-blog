@@ -1,4 +1,5 @@
 import React from 'react';
+import Tag from '../atom-components/Tag';
 
 interface PostTitleProps {
   title: string;
@@ -9,17 +10,15 @@ interface PostTitleProps {
 
 const PostTitle = ({ title, description, tags, date }: PostTitleProps) => {
   return (
-    <div className=" flex justify-center items-center flex-col mb-24">
-      <h1 className=" font-extrabold text-2xl md:text-4xl lg:text-6xl mb-4">
+    <div className=" flex justify-center items-center flex-col mb-24 cursor-pointer">
+      <h1 className=" font-extrabold text-2xl md:text-4xl lg:text-6xl mb-4 cursor-pointer">
         {title}
       </h1>
-      <p className=" opacity-70 mb-4 underline underline-offset-2">
+      <p className=" opacity-70 mb-4 underline underline-offset-2 cursor-pointer">
         {description}
       </p>
       <div className=" flex flex-row gap-4 justify-center items-center">
-        <div className=" text-xs px-4 bg-yellow-400 rounded-lg py-1 dark:text-gray-200 text-white dark:bg-yellow-600">
-          {tags}
-        </div>
+        <Tag>{tags}</Tag>
         <p className=" text-xs">{date}</p>
       </div>
     </div>

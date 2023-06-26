@@ -7,7 +7,7 @@ interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
   return (
-    <footer className="max-w-[1024px] mx-auto px-12 h-[100px]">
+    <footer className="max-w-[1024px] mx-auto px-12 h-[100px] ">
       <div className=" flex justify-center items-center flex-col">
         <Button>
           <a href="https://github.com/XionWCFM" target="_blank">

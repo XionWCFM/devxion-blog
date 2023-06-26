@@ -30,7 +30,7 @@ interface HeaderProps {}
 const Header = ({}: HeaderProps) => {
   const currentRoute = usePathname();
   return (
-    <header className=" flex lg:block lg:sticky top-0 z-30 bg-white  pb-4 pt-3 border-b dark:border-gray-200 border-gray-200 dark:bg-black ">
+    <header className=" flex lg:block lg:sticky top-0 z-30 bg-white  pb-4 pt-3 border-b dark:border-gray-200 border-gray-200 dark:bg-black smooth">
       <div className=" flex lg:flex-row flex-col lg:justify-between lg:items-center gap-y-8 max-w-[1024px] mx-auto px-12 ">
         <div className=" flex items-center gap-12">
           <Link href={'/'}>
