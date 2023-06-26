@@ -1,4 +1,4 @@
-import { Footer, Header, Providers } from '@/components';
+import { Footer, Header, MoveTop, Providers } from '@/components';
 import '@/styles/globals.css';
 import '@/styles/animation.css';
 import { Metadata } from 'next';
@@ -41,6 +41,7 @@ export default function RootLayout({
               </div>
             </div>
           </div>
+          <MoveTop />
           <Footer />
         </Providers>
       </body>

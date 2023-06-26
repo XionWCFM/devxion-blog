@@ -8,6 +8,7 @@ export { default as Paragraph } from './atom-components/Paragraph';
 export { default as Mdx } from './helper-components/Mdx';
 export { default as Providers } from './helper-components/Providers';
 export { default as DarkModeToggleBtn } from './helper-components/DarkModeToggleBtn';
+export { default as MoveTop } from './helper-components/MoveTop';
 
 // ui
 export { default as Header } from './ui-components/Header';

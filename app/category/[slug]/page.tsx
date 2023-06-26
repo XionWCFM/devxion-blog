@@ -34,7 +34,6 @@ const tags = tagClassifier();
 
 const Page = ({ params: { slug } }: pageProps) => {
   const currentRoute = usePathname().split('/')[2];
-  console.log(currentRoute);
   return (
     <section>
       <HeadingParagraph>{slug.toUpperCase()}</HeadingParagraph>
