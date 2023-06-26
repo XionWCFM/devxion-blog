@@ -35,3 +35,7 @@ input {
   appearance: none;
   outline: none;
 }
+
+.wrap {
+  min-height: calc(100vh - 104px);
+}

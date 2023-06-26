@@ -1,8 +1,9 @@
+'use client';
 import { allDocuments, DocumentTypes } from '@/.contentlayer/generated';
 import { CardList, HeadingParagraph, Paragraph } from '@/components';
+import { usePathname } from 'next/navigation';
 
 import Tag from '@/components/atom-components/Tag';
-import { dateFormat } from '@/utils';
 import Link from 'next/link';
 import React from 'react';
 
@@ -11,7 +12,8 @@ interface pageProps {
     slug: string;
   };
 }
-interface TagsInterface {
+
+export interface TagsInterface {
   [key: string]: DocumentTypes[];
 }
 
@@ -30,7 +32,9 @@ const tagClassifier = () => {
 
 const tags = tagClassifier();
 
-const page = ({ params: { slug } }: pageProps) => {
+const Page = ({ params: { slug } }: pageProps) => {
+  const currentRoute = usePathname().split('/')[2];
+  console.log(currentRoute);
   return (
     <section>
       <HeadingParagraph>{slug.toUpperCase()}</HeadingParagraph>
@@ -40,7 +44,9 @@ const page = ({ params: { slug } }: pageProps) => {
         {Object.keys(tags).map((tag, i) => (
           <div key={`tag${i}`}>
             <Link href={`category/${tag}`}>
-              <Tag>{tag}</Tag>
+              <Tag className={currentRoute === tag ? 'ct scale-125 mx-3' : ''}>
+                {tag}
+              </Tag>
             </Link>
           </div>
         ))}
@@ -50,4 +56,4 @@ const page = ({ params: { slug } }: pageProps) => {
   );
 };
 
-export default page;
+export default Page;

@@ -14,8 +14,9 @@ const page = ({}: pageProps) => {
   return (
     <div>
       <HeadingParagraph>CHEATSHEET</HeadingParagraph>
-      <Paragraph>잊어버리기 쉽지만 자주 쓰는 코드들을 모아봤습니다</Paragraph>
-      <Paragraph>🤭</Paragraph>
+      <Paragraph>
+        잊어버리기 쉽지만 자주 쓰는 코드들을 모아봤습니다 🤭
+      </Paragraph>
       <CardList docArray={allCheatSheets} />
     </div>
   );
