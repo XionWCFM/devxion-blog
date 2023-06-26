@@ -1,7 +1,8 @@
 import { allDocuments, DocumentTypes } from '@/.contentlayer/generated';
-import { HeadingParagraph, Paragraph } from '@/components';
+import { CardList, HeadingParagraph, Paragraph } from '@/components';
 
 import Tag from '@/components/atom-components/Tag';
+import { dateFormat } from '@/utils';
 import Link from 'next/link';
 import React from 'react';
 
@@ -33,7 +34,7 @@ const page = ({ params: { slug } }: pageProps) => {
   return (
     <section>
       <HeadingParagraph>{slug.toUpperCase()}</HeadingParagraph>
-      <Paragraph>각 태그 별로 원하는 정보를 찾아볼 수 있습니다.</Paragraph>
+      <Paragraph>각 태그별로 원하는 정보를 찾아볼 수 있습니다.</Paragraph>
       <Paragraph>부디 도움이 되었으면 좋겠습니다.😉</Paragraph>
       <div className=" mt-4 flex gap-2">
         {Object.keys(tags).map((tag, i) => (
@@ -44,11 +45,7 @@ const page = ({ params: { slug } }: pageProps) => {
           </div>
         ))}
       </div>
-      <div>
-        {tags[slug].map((post) => (
-          <div key={post.title}>{post.title}</div>
-        ))}
-      </div>
+      <CardList docArray={tags[slug]} />
     </section>
   );
 };
