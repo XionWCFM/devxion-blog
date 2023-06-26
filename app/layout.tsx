@@ -1,5 +1,6 @@
 import { Footer, Header, Providers } from '@/components';
 import '@/styles/globals.css';
+import '@/styles/animation.css';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 ">
-            <div className="  px-12 py-10 max-w-[1024px] mx-auto ">
+            <div className="  px-12 py-10 max-w-[1024px] mx-auto">
               {children}
             </div>
           </div>
