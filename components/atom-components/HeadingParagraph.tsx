@@ -5,7 +5,11 @@ interface HeadingParagraphProps {
 }
 
 const HeadingParagraph = ({ children }: HeadingParagraphProps) => {
-  return <h2>{children}</h2>;
+  return (
+    <h2 className=" font-extrabold text-2xl md:text-4xl lg:text-5xl mb-4">
+      {children}
+    </h2>
+  );
 };
 
 export default HeadingParagraph;
