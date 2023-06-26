@@ -66,14 +66,7 @@ const Header = ({}: HeaderProps) => {
             className=" rounded-xl pl-4 pr-2 py-1 dark:bg-zinc-700 lg:dark:bg-black dark:bg-opacity-90 dark:text-white bg-gray-200 focus:border-2 border-yellow-500  "
             placeholder="Search..."
           />
-          <Button className=" -ml-9 lg:-ml-6">
-            <Image
-              src={Icons.SearchIcon.src}
-              alt={Icons.SearchIcon.alt}
-              width={25}
-              height={25}
-            />
-          </Button>
+
           <DarkModeToggleBtn />
         </div>
       </div>
