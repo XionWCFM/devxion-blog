@@ -41,9 +41,34 @@ export const Post = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const CheatSheet = defineDocumentType(() => ({
+  name: 'CheatSheet',
+  filePathPattern: `cheatsheet/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    title: {
+      type: 'string',
+      required: true,
+    },
+    description: {
+      type: 'string',
+      required: true,
+    },
+    date: {
+      type: 'date',
+      required: true,
+    },
+    tags: {
+      type: 'string',
+      required: true,
+    },
+  },
+  computedFields,
+}));
+
 export default makeSource({
   contentDirPath: './content',
-  documentTypes: [Post],
+  documentTypes: [Post, CheatSheet],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
