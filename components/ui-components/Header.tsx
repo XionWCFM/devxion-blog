@@ -41,7 +41,7 @@ const Header = ({}: HeaderProps) => {
           <div className=" flex gap-4 lg:gap-8 flex-col lg:flex-row lg:items-start items-end">
             {navigateArray.map((item) => (
               <Link
-                href={`/${item}`}
+                href={item === 'category' ? `/${item}/all` : `/${item}`}
                 key={item}
                 className={
                   currentRoute === `/${item}`
