@@ -107,6 +107,7 @@ const components: MDXComponents = {
           className,
         )}
         alt={alt}
+        sizes="(max-width: 480px) 300px, (max-width: 768px ) 500px, 850px"
         {...props}
       />
     </div>
