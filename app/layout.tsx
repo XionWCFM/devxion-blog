@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 
 import { Footer, Header, MoveTop, Providers } from '@/components';
 
+import ScrollProgressBar from '@/components/helper-components/ScrollProgressBar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -35,6 +36,8 @@ export default function RootLayout({
     <html lang="kr">
       <body className="dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white overflow-x-hidden min-h-screen">
         <Providers>
+          <ScrollProgressBar />
+
           <div className=" ">
             <Header />
             <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 ">
