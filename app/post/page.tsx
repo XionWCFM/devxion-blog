@@ -1,6 +1,5 @@
 import { allPosts } from '@/.contentlayer/generated';
 import { CardList, HeadingParagraph, Paragraph } from '@/components';
-import React from 'react';
 
 interface pageProps {}
 
