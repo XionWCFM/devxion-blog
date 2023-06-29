@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-echo 'Hello Gabia!'
-
-exit 0
+echo 'Hello i m gonna check your code!'
+npm test
