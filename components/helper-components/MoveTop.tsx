@@ -1,6 +1,4 @@
 'use client';
-import Button from '../atom-components/Button';
-import React from 'react';
 
 interface MoveTopProps {}
 

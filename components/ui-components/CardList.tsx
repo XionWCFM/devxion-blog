@@ -1,7 +1,6 @@
 import { DocumentTypes } from '@/.contentlayer/generated';
 import { dateFormat } from '@/utils';
 import Link from 'next/link';
-import React from 'react';
 import Tag from '../atom-components/Tag';
 
 interface PostCardProps {

@@ -1,9 +1,9 @@
 'use client';
+import { Icons } from '@/assets';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import Button from '../atom-components/Button';
-import { Icons } from '@/assets';
 import React from 'react';
+import Button from '../atom-components/Button';
 
 interface DarkModeToggleBtnProps {}
 

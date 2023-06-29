@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import * as React from 'react';
-import Image from 'next/image';
+import { cn } from '@/utils';
 import type { MDXComponents } from 'mdx/types';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { cn } from '@/utils';
+import * as React from 'react';
 
 const components: MDXComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (

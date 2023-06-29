@@ -1,14 +1,10 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { cva } from 'class-variance-authority';
 import { cn } from '@/utils';
-import { Icons } from '@/assets';
+import { cva } from 'class-variance-authority';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
 import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
-import Button from '../atom-components/Button';
-import Image from 'next/image';
 
 const HighlightVariants = cva(
   ` transition-colors duration-300 
