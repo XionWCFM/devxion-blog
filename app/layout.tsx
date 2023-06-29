@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="kr">
       <body className="dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white overflow-x-hidden min-h-screen">
         <Providers>
-          <div className=" wrap">
+          <div className=" ">
             <Header />
             <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 ">
               <div className="  px-12 py-10 max-w-[1024px] mx-auto">
