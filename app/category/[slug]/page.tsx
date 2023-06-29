@@ -1,10 +1,8 @@
+import { allDocuments, DocumentTypes } from '@/.contentlayer/generated';
 import { CardList, HeadingParagraph, Paragraph } from '@/components';
-import { DocumentTypes, allDocuments } from '@/.contentlayer/generated';
 
-import Link from 'next/link';
-import React from 'react';
 import Tag from '@/components/atom-components/Tag';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 interface pageProps {
   params: {

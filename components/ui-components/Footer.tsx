@@ -1,6 +1,6 @@
-import Button from '../atom-components/Button';
 import { Icons } from '@/assets';
 import Image from 'next/image';
+import Button from '../atom-components/Button';
 
 interface FooterProps {}
 

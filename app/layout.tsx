@@ -1,5 +1,5 @@
-import '@/styles/globals.css';
 import '@/styles/animation.css';
+import '@/styles/globals.css';
 
 import { Footer, Header, MoveTop, Providers } from '@/components';
 

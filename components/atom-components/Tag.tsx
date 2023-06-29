@@ -1,5 +1,5 @@
-import Button from './Button';
 import { cn } from '@/utils';
+import Button from './Button';
 
 interface TagProps {
   children: React.ReactNode;
