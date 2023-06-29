@@ -1,7 +1,7 @@
 import { DocumentTypes } from '@/.contentlayer/generated';
-import { dateFormat } from '@/utils';
 import Link from 'next/link';
 import Tag from '../atom-components/Tag';
+import { dateFormat } from '@/utils';
 
 interface PostCardProps {
   docArray: DocumentTypes[];

@@ -1,6 +1,8 @@
-import { Footer, Header, MoveTop, Providers } from '@/components';
 import '@/styles/globals.css';
 import '@/styles/animation.css';
+
+import { Footer, Header, MoveTop, Providers } from '@/components';
+
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

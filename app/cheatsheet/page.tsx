@@ -1,6 +1,7 @@
-import { allCheatSheets } from '@/.contentlayer/generated';
 import { CardList, HeadingParagraph, Paragraph } from '@/components';
+
 import React from 'react';
+import { allCheatSheets } from '@/.contentlayer/generated';
 
 interface pageProps {}
 
