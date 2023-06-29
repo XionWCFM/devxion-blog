@@ -11,7 +11,7 @@ import Button from '../atom-components/Button';
 import Image from 'next/image';
 
 const HighlightVariants = cva(
-  `transition-all duration-300 
+  ` transition-colors duration-300 
   hover:text-yellow-400 font-extrabold text-zinc-600 dark:text-zinc-300
   `,
   {
