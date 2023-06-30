@@ -1,15 +1,26 @@
-import React from 'react';
-
-import { dateFormat } from '@/utils';
 import { allCheatSheets } from '@/.contentlayer/generated';
-import { notFound } from 'next/navigation';
 import { Mdx, PostTitle } from '@/components';
+import { dateFormat } from '@/utils';
+import { notFound } from 'next/navigation';
 
 interface pageProps {
   params: {
     slug: string;
   };
 }
+export const generateStaticParams = () => {
+  return allCheatSheets.map((cheatsheet) => ({
+    slug: cheatsheet.slugAsParams,
+  }));
+};
+
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+  const cheatsheet = allCheatSheets.find(
+    (cheatsheet) => cheatsheet.slugAsParams === params.slug,
+  );
+  if (!cheatsheet) throw new Error(`Post not found for slug: ${params.slug}`);
+  return { title: cheatsheet.title };
+};
 
 const getCheatSheetFromParams = (slug: string) => {
   const cheatsheet = allCheatSheets.find((post) => post.slugAsParams === slug);

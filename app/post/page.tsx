@@ -3,12 +3,6 @@ import { CardList, HeadingParagraph, Paragraph } from '@/components';
 
 interface pageProps {}
 
-export const generateStaticParams = () => {
-  return allPosts.map((post) => ({
-    slug: post.slugAsParams,
-  }));
-};
-
 const page = ({}: pageProps) => {
   return (
     <div>

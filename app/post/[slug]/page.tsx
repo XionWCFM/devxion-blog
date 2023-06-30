@@ -1,15 +1,26 @@
-import React from 'react';
-import Mdx from '@/components/helper-components/Mdx';
 import { allPosts } from '@/.contentlayer/generated';
+import Mdx from '@/components/helper-components/Mdx';
+import PostTitle from '@/components/ui-components/PostTitle';
 import { dateFormat } from '@/utils';
 import { notFound } from 'next/navigation';
-import PostTitle from '@/components/ui-components/PostTitle';
 
 interface pageProps {
   params: {
     slug: string;
   };
 }
+
+export const generateStaticParams = () => {
+  return allPosts.map((post) => ({
+    slug: post.slugAsParams,
+  }));
+};
+
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+  const post = allPosts.find((post) => post.slugAsParams === params.slug);
+  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+  return { title: post.title };
+};
 
 const getPostFromParams = (slug: string) => {
   const post = allPosts.find((post) => post.slugAsParams === slug);
