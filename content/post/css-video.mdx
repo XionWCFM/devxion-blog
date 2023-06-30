@@ -1,0 +1,136 @@
+---
+title: video 태그 자동재생 시키기
+description: autoplay 줬는데 외않되!!
+date: 2023-06-30
+tags: html
+---
+
+![image](/rabbit.jpg)
+
+## HTML Video Tag 알아보기
+
+video 요소는 미디어 플레이어를 문서에 삽입해줍니다.
+
+오디오 콘텐츠에도 video 요소를 사용할 수는 있지만
+
+사용자 경험을 고려하면 audio 요소를 사용하는 것을 더 추천합니다.
+
+## 사용법
+
+```tsx
+<video
+  loop
+  autoplay
+  muted
+  src="/bgvideo.webm"
+  className="h-screen w-screen object-cover "
+></video>
+```
+
+굉장히 직관적이게 사용할 수 있습니다.
+
+위 예시에서 볼 수 있는 attributes는 loop / autoplay / muted / src / className 입니다.
+
+calssName은 리액트 문법을 따르느라 그런것이니 제외하고
+
+`loop` -> 이 값을 설정해두면 동영상 재생이 마쳐졌을 때 자동으로 처음으로 돌아갑니다.
+
+`autoplay` -> 이 값을 설정해두면 동영상 재생을 클릭하지 않아도 자동으로 실행됩니다.
+
+`muted` -> 기본 값은 false이며 false일 때에는 동영상이 재생되었을때 오디오도 같이 재생됩니다.
+
+`src` -> 삽입할 동영상의 주소가 들어가게됩니다.
+
+이 외에도 자주 사용하는 속성을 조금 알아보겠습니다.
+
+`controls` -> 재생 , 소리크기, 전체화면 등을 컨트롤할 수 있는 컨트롤바가 표시됩니다.
+
+## 왜 autoplay를 설정해줬는데도 자동재생이 안될까?
+
+이는 사용자 경험과 관련이 있습니다.
+
+사용자가 예상치못하게 동영상이 재생되며 동영상 소리가 흘러나오게 되는 경우
+
+사용자 경험이 매우 저해됩니다.
+
+따라서 구글크롬등의 브라우저는 오토플레이 속성을 block해둡니다.
+
+이를 해결하기 위해서는 아까 살펴본 muted 옵션을 활성화하여
+
+동영상이 재생되더라도 소리는 나지않도록 처리해주면 됩니다.
+
+```tsx
+<video
+  loop
+  autoplay
+  muted
+  src="/bgvideo.webm"
+  className="h-screen w-screen object-cover "
+></video>
+```
+
+즉 아까보았던 예제와 같이 autoplay 속성과 muted 속성을 함께 주면 해결됩니다.
+
+## 로컬에 있는 동영상 파일을 재생시키고 싶은데 경로를 모르겠어요
+
+public 폴더 내부에 넣어둔 정적인 asset들은 바로 /파일명 형태로 접근할 수 있습니다.
+
+즉 public/hi.jpg 에 접근하고 싶다면 어디서든
+
+/hi.jpg로 접근하면 된다는 뜻입니다.
+
+만약 public 내부에 폴더가 중첩되어있다면 어떨까요?
+
+public/2023/hi.jpg
+
+이러한 경우에는 /2023/hi.jpg로 접근하면 됩니다.
+
+## 비디오를 화면에 꽉차도록 보여주고 싶어요!
+
+tailwindcss를 사용한다는 가정으로 작성하겠지만 tailwindcss와 매칭되는 속성들을 부여해주면 다른 환경에서도 문제 없이 동작합니다.
+
+```tsx
+<main className="overflow-x-hidden">
+  <video
+    loop
+    autoPlay
+    muted
+    src="/bgvideo.webm"
+    className="h-screen w-screen object-cover "
+  ></video>
+</main>
+```
+
+css로 치환하면 다음과 같습니다.
+
+```css
+video {
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+}
+```
+
+vh, vw는 뷰포트를 기준으로 하는 단위입니다.
+
+height에 vh를 100을 주게되면 세로로 꽉찬 화면을 볼 수 있습니다.
+
+width에 vw를 100을 주게되면 가로로 꽉찬 화면을 보게되죠!
+
+object-fit 속성은 아주 강력한 속성입니다.
+
+이미지를 콘텐츠
+
+object-fit 속성을 cover로 부여하면 콘텐츠의 가로세로비는 유지하면서 콘텐츠 박스를 가득채우게 됩니다.
+
+만약 가로세로비가 일치하지 않으면 요소를 조금 확대하고 가장자리를 자릅니다.
+
+https://developer.mozilla.org/ko/docs/Web/CSS/object-fit
+
+해당 링크를 참고해보세요!
+
+다만 주의할점은 vh, vw 단위는 부모속성의 크기에 영향을 받는다는 점입니다.
+
+즉 부모속성의 크기가 정해져있는 경우에는 화면을 꽉채우지 않을 수 있습니다.
+
+이 점 유의하시기 바랍니다!
