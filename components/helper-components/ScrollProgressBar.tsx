@@ -1,4 +1,5 @@
 'use client';
+import useThrottle from '@/hooks/useThrottle';
 import React from 'react';
 
 interface ScrollProgressBarProps {}
@@ -6,18 +7,21 @@ interface ScrollProgressBarProps {}
 const ScrollProgressBar = ({}: ScrollProgressBarProps) => {
   const [width, setWidth] = React.useState(0);
   const progressRef = React.useRef<HTMLDivElement>(null);
+  const handleScroll = useThrottle(
+    React.useCallback((): void => {
+      const { scrollTop, scrollHeight, clientHeight } =
+        document.documentElement;
 
-  const handleScroll = React.useCallback((): void => {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-    if (scrollTop === 0) {
-      setWidth(0);
-      return;
-    }
-    const windowHeight: number = scrollHeight - clientHeight;
-    const currentPercent: number = scrollTop / windowHeight;
-    setWidth(currentPercent * 100);
-  }, []);
+      if (scrollTop === 0) {
+        setWidth(0);
+        return;
+      }
+      const windowHeight: number = scrollHeight - clientHeight;
+      const currentPercent: number = scrollTop / windowHeight;
+      setWidth(currentPercent * 100);
+    }, []),
+    100,
+  );
 
   React.useEffect(() => {
     if (typeof window === undefined) return;
