@@ -8,32 +8,6 @@ body {
 }
 
 ::-webkit-scrollbar {
-  display: none;
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar {
-  background: transparent;
-}
-::-webkit-scrollbar-track {
-  background: #edece9;
-}
-::-webkit-scrollbar-thumb {
-  background: #d3d1cb;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #aeaca6;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: rgba(202, 204, 206, 0.04);
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: #474c50;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(202, 204, 206, 0.3);
 }
 
 input {
@@ -41,8 +15,4 @@ input {
   -moz-appearance: none;
   appearance: none;
   outline: none;
-}
-
-.wrap {
-  min-height: calc(100vh - 104px);
 }
