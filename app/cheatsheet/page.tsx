@@ -5,12 +5,6 @@ import { allCheatSheets } from '@/.contentlayer/generated';
 
 interface pageProps {}
 
-export const generateStaticParams = () => {
-  return allCheatSheets.map((cheatsheet) => ({
-    slug: cheatsheet.slugAsParams,
-  }));
-};
-
 const page = ({}: pageProps) => {
   return (
     <div>
