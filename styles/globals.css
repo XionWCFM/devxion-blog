@@ -8,6 +8,7 @@ body {
 }
 
 ::-webkit-scrollbar {
+  display: none;
 }
 
 input {
@@ -15,4 +16,12 @@ input {
   -moz-appearance: none;
   appearance: none;
   outline: none;
+}
+
+.wrapper {
+  min-height: calc(100vh - 150px);
+}
+
+.footer {
+  position: relative;
 }

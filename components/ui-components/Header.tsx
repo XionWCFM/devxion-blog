@@ -24,7 +24,7 @@ const HighlightVariants = cva(
   },
 );
 
-const navigateArray = ['post', 'category', 'cheatsheet', 'about'];
+const navigateArray = ['post', 'cheatsheet', 'category', 'about'];
 
 interface HeaderProps {}
 

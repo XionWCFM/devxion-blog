@@ -38,7 +38,7 @@ export default function RootLayout({
         <Providers>
           <ScrollProgressBar />
 
-          <div className=" ">
+          <div className="wrapper">
             <Header />
             <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 ">
               <div className="  px-12 py-10 max-w-[1024px] mx-auto">
