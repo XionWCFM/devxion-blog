@@ -2,6 +2,7 @@ import '@/styles/animation.css';
 import '@/styles/globals.css';
 
 import { Footer, Header, MoveTop, Providers } from '@/components';
+import { Noto_Sans_KR } from 'next/font/google';
 
 import ScrollProgressBar from '@/components/helper-components/ScrollProgressBar';
 import { Metadata } from 'next';
@@ -30,13 +31,19 @@ export const metadata: Metadata = {
   },
 };
 
+const notosanskr = Noto_Sans_KR({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kr">
+    <html lang="kr" className={notosanskr.className}>
       <body className="dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white overflow-x-hidden min-h-screen">
         <Providers>
           <ScrollProgressBar />
