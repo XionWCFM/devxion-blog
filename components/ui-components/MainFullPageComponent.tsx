@@ -31,25 +31,27 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
           >
             <item.component />
             <span>{item.pageNum}</span>
-            {pageObjArray.map((item, idx) => {
-              return (
-                <div
-                  key={item.pageNum}
-                  className={cn(
-                    'rounded-full transition-all w-4 h-4',
-                    currentPageNum === item.pageNum
-                      ? 'bg-black'
-                      : 'bg-gray-400',
-                  )}
-                  onClick={() => {
-                    pageButtonHandler(item.pageNum);
-                  }}
-                ></div>
-              );
-            })}
           </div>
         );
       })}
+      <div className=" fixed top-1/2 right-10 smooth">
+        <div className=" flex flex-col gap-2">
+          {pageObjArray.map((item, idx) => {
+            return (
+              <div
+                key={item.pageNum}
+                className={cn(
+                  'rounded-full transition-all w-4 h-4',
+                  currentPageNum === item.pageNum ? 'bg-black' : 'bg-gray-400',
+                )}
+                onClick={() => {
+                  pageButtonHandler(item.pageNum);
+                }}
+              ></div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
