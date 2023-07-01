@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface MainFullPageComponentProps {}
 
@@ -55,12 +55,23 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
     });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     windowObj?.addEventListener('scroll', handlePageChange);
     return () => {
       windowObj?.removeEventListener('scroll', handlePageChange);
     };
   }, [windowObj, handlePageChange]);
+
+  React.useEffect(() => {
+    windowObj?.addEventListener(
+      'wheel',
+      (e: Event) => {
+        e.preventDefault();
+        console.log(e);
+      },
+      { passive: false },
+    );
+  }, [windowObj]);
 
   return (
     <div>
@@ -71,7 +82,7 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
             ref={(element) => {
               pageRefs.current[item.pageNum] = element!;
             }}
-            className={`w-screen h-screen ${item.bgColor}`}
+            className={`w-screen h-screen  ${item.bgColor}`}
           >
             <span>{item.pageNum}</span>
             {pageObjArray.map((item, idx) => {

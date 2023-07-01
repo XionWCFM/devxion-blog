@@ -1,5 +1,6 @@
 import '@/styles/animation.css';
 import '@/styles/globals.css';
+import '@/styles/style.css';
 
 import { Footer, Header, MoveTop, Providers } from '@/components';
 import { Noto_Sans_KR } from 'next/font/google';
