@@ -10,11 +10,13 @@ export interface IPageObj {
   bgColor: string;
 }
 
+const ComponentA = () => <div>엄준식</div>;
+
 const pageObjArray = [
-  { pageNum: 1, bgColor: 'bg-[#ffeaa7]' },
-  { pageNum: 2, bgColor: 'bg-[#fab1a0]' },
-  { pageNum: 3, bgColor: 'bg-[#fdcb6e]' },
-  { pageNum: 4, bgColor: 'bg-[#e17055]' },
+  { pageNum: 1, bgColor: 'bg-[#ffeaa7]', component: ComponentA },
+  { pageNum: 2, bgColor: 'bg-[#fab1a0]', component: ComponentA },
+  { pageNum: 3, bgColor: 'bg-[#fdcb6e]', component: ComponentA },
+  { pageNum: 4, bgColor: 'bg-[#e17055]', component: ComponentA },
 ];
 
 const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
@@ -55,6 +57,28 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
     });
   };
 
+  const wheelHandler = React.useCallback(
+    (e: WheelEvent) => {
+      e.preventDefault();
+      if (e.deltaY < 0 && currentPageNum > 1) {
+        windowObj?.scrollTo({
+          top: pageRefs.current[currentPageNum - 1].offsetTop,
+          behavior: 'smooth',
+        });
+        setCurrentPageNum((state) => state - 1);
+      }
+
+      if (e.deltaY > 0 && currentPageNum < totalNum) {
+        windowObj?.scrollTo({
+          top: pageRefs.current[currentPageNum + 1].offsetTop,
+          behavior: 'smooth',
+        });
+        setCurrentPageNum((state) => state + 1);
+      }
+    },
+    [currentPageNum, totalNum, windowObj],
+  );
+
   React.useEffect(() => {
     windowObj?.addEventListener('scroll', handlePageChange);
     return () => {
@@ -63,15 +87,11 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
   }, [windowObj, handlePageChange]);
 
   React.useEffect(() => {
-    windowObj?.addEventListener(
-      'wheel',
-      (e: Event) => {
-        e.preventDefault();
-        console.log(e);
-      },
-      { passive: false },
-    );
-  }, [windowObj]);
+    windowObj?.addEventListener('wheel', wheelHandler, { passive: false });
+    return () => {
+      windowObj?.removeEventListener('wheel', wheelHandler);
+    };
+  }, [wheelHandler, windowObj]);
 
   return (
     <div>
@@ -84,6 +104,7 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
             }}
             className={`w-screen h-screen  ${item.bgColor}`}
           >
+            <item.component />
             <span>{item.pageNum}</span>
             {pageObjArray.map((item, idx) => {
               return (
