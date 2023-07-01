@@ -1,21 +1,38 @@
 import { cn } from '@/utils';
-import React from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
+import React, { ComponentPropsWithoutRef } from 'react';
 
-interface HeadingParagraphProps {
+const HeadingVariants = cva(
+  `
+  font-extrabold text-yellow-500 mb-4 smooth
+`,
+  {
+    variants: {
+      size: {
+        default: ' text-2xl md:text-4xl lg:text-5xl',
+        sm: 'text-lg sm:text-xl md:text-3xl lg:text-4xl',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  },
+);
+
+interface HeadingParagraphProps
+  extends ComponentPropsWithoutRef<'h2'>,
+    VariantProps<typeof HeadingVariants> {
   children: React.ReactNode;
   className?: string;
 }
 
-const HeadingParagraph = ({ children, className }: HeadingParagraphProps) => {
+const HeadingParagraph = ({
+  children,
+  className,
+  size,
+}: HeadingParagraphProps) => {
   return (
-    <h2
-      className={cn(
-        ' font-extrabold text-2xl md:text-4xl lg:text-5xl mb-4 smooth text-yellow-500',
-        className,
-      )}
-    >
-      {children}
-    </h2>
+    <h2 className={cn(HeadingVariants({ size }), className)}>{children}</h2>
   );
 };
 
