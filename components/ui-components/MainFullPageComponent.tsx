@@ -24,7 +24,7 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
   const [currentPageNum, setCurrentPageNum] = React.useState(1);
   const totalNum = pageObjArray.length;
   const pageRefs = React.useRef<HTMLDivElement[]>([]);
-
+  const [isExecuting, setIsExecuting] = React.useState(false);
   React.useEffect(() => {
     if (window !== undefined) {
       setWindowObj(window);
@@ -56,27 +56,34 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
       behavior: 'smooth',
     });
   };
-
   const wheelHandler = React.useCallback(
     (e: WheelEvent) => {
       e.preventDefault();
-      if (e.deltaY < 0 && currentPageNum > 1) {
-        windowObj?.scrollTo({
-          top: pageRefs.current[currentPageNum - 1].offsetTop,
-          behavior: 'smooth',
-        });
-        setCurrentPageNum((state) => state - 1);
-      }
+      if (!isExecuting) {
+        setIsExecuting(true);
 
-      if (e.deltaY > 0 && currentPageNum < totalNum) {
-        windowObj?.scrollTo({
-          top: pageRefs.current[currentPageNum + 1].offsetTop,
-          behavior: 'smooth',
-        });
-        setCurrentPageNum((state) => state + 1);
+        if (e.deltaY < 0 && currentPageNum > 1) {
+          windowObj?.scrollTo({
+            top: pageRefs.current[currentPageNum - 1].offsetTop,
+            behavior: 'smooth',
+          });
+          setCurrentPageNum((state) => state - 1);
+        }
+
+        if (e.deltaY > 0 && currentPageNum < totalNum) {
+          windowObj?.scrollTo({
+            top: pageRefs.current[currentPageNum + 1].offsetTop,
+            behavior: 'smooth',
+          });
+          setCurrentPageNum((state) => state + 1);
+        }
+
+        setTimeout(() => {
+          setIsExecuting(false);
+        }, 600);
       }
     },
-    [currentPageNum, totalNum, windowObj],
+    [currentPageNum, totalNum, windowObj, isExecuting, setIsExecuting],
   );
 
   React.useEffect(() => {
