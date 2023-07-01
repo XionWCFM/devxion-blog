@@ -8,7 +8,7 @@ import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
 
 const HighlightVariants = cva(
   ` transition-colors duration-300 
-  hover:text-yellow-400 font-extrabold text-zinc-600 dark:text-zinc-300
+  hover:text-yellow-400 font-extrabold dark:text-white text-zinc-600
   `,
   {
     variants: {
@@ -32,7 +32,7 @@ const Header = ({}: HeaderProps) => {
   const currentRoute = usePathname().split('/')[1];
 
   return (
-    <header className=" flex lg:block  top-0 z-30 bg-white  pb-4 pt-3 border-b dark:border-none border-gray-200 dark:bg-inherit smooth">
+    <header className=" fixed pb-4 pt-3 smooth top-0 left-0 right-0 ">
       <div className=" flex lg:flex-row flex-col lg:justify-between lg:items-center gap-y-8 max-w-[1024px] mx-auto px-12 ">
         <div className=" flex items-center gap-12">
           <Link href={'/'}>

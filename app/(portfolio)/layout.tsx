@@ -2,10 +2,11 @@ import '@/styles/animation.css';
 import '@/styles/globals.css';
 import '@/styles/style.css';
 
-import { Footer, Header, MoveTop, Providers } from '@/components';
+import { MoveTop, Providers } from '@/components';
 import { Noto_Sans_KR } from 'next/font/google';
 
 import ScrollProgressBar from '@/components/helper-components/ScrollProgressBar';
+import PortfolioHeader from '@/components/ui-components/PortfolioHeader';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -45,20 +46,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr" className={notosanskr.className}>
-      <body className="dark:bg-gradient-to-br dark:from-black dark:to-gray-800  bg-white overflow-x-hidden min-h-screen">
+      <body>
         <Providers>
           <ScrollProgressBar />
-
-          <div className="wrapper">
-            <Header />
-            <div className="text-gray-700 transition-colors duration-300 dark:text-gray-200 ">
-              <div className="  px-12 py-10 max-w-[1024px] mx-auto">
-                {children}
-              </div>
-            </div>
+          <div className="">
+            <PortfolioHeader />
+            {children}
           </div>
           <MoveTop />
-          <Footer />
         </Providers>
       </body>
     </html>
