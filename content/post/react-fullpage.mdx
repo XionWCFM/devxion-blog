@@ -1,5 +1,5 @@
 ---
-title: fullpage 기능 라이브러리 없이 구현하기
+title: fullpage 기능을 구현해보자
 description: 사먹는 것보다 맛있습니다.
 date: 2023-07-02
 tags: react
@@ -9,7 +9,7 @@ tags: react
 
 blog의 메인화면을 fullpage로 만들고싶다는 생각이 들었습니다.
 
-**그래서 본 포스트에서는 제가 fullpage를 구현하며 만난 문제들과 해결과정을 소개합니다.!**
+**그래서 본 포스트에서는 제가 fullpage를 구현하며 만난 문제들과 해결과정을 소개합니다!**
 
 [배달의 민족 홈페이지](https://www.baemin.com) 와 같이
 
@@ -250,6 +250,8 @@ React.useEffect(() => {
 
 우선 첫 마운트 시점에 window 객체가 존재하면 window객체를 기억하도록 코드를 작성합니다.
 
+### 현재 보고있는 페이지를 업데이트하는 이벤트핸들러 만들기
+
 ```jsx
 const currentPageChange = React.useCallback(
       (event: Event) => {
@@ -281,3 +283,255 @@ const currentPageChange = React.useCallback(
 **offsetTop** 속성은 요소의 y축 위치 값을 가져오는 속성입니다.
 
 **outerHeight** 속성은 사이드바, 창 크기 조정 테두리/핸들을 포함하여 전체 브라우저 창의 높이를 픽셀 단위로 반환하는 속성입니다.
+
+또한 이 currentPageChange 함수는 useEffect의 의존성 배열로 활용해주어야 하기 때문에
+
+usecallback으로 감싸주어 메모이제이션하도록 하겠습니다.
+
+**자바스크립트에서 함수는 일급객체로 취급됩니다.**
+
+즉 함수 역시 비교할 때 값이 아닌 참조로 비교됩니다.
+
+또한 컴포넌트 내부에서 함수를 정의하는 경우
+
+모든 단일 렌더링에서 함수도 다시 생성되기 때문에 함수의 참조값도 렌더링마다 달라지게 됩니다.
+
+따라서 useEffect의 의존성배열로 메모이제이션 하지 않은 컴포넌트 내부에서 정의된 함수를 줄 경우
+
+모든 렌더에서 useEffect가 실행되고 맙니다.
+
+반면 useCallback으로 감싸주게되는 경우 useCallback의 의존성배열에 있는 종속성들이 변경된 경우에만 다시 생성되지요
+
+useEffect를 이용하여 만들어준 currentPageChange 함수를 이벤트 리스너에 부착해주겠습니다.
+
+```jsx
+React.useEffect(() => {
+  windowObj?.addEventListener('wheel', currentPageChange);
+  return () => {
+    windowObj?.removeEventListener('wheel', currentPageChange);
+  };
+}, [currentPageChange, windowObj]);
+```
+
+useEffect가 제공하는 클린업 함수를 이용하여
+
+언마운트가 되는 시점에 달아두었던 이벤트리스너를 정리하여
+
+메모리 누수를 막는 것은 성능 상 중요한 일입니다.
+
+### onClick 되었을때 이동시켜줄 함수 만들기
+
+다음은 버튼의 onClick 이벤트가 발생했을때 동작할 핸들러 함수를 만들어주겠습니다.
+
+```jsx
+const pageButtonHandler = (pageNum: number) => {
+  windowObj?.scrollTo({
+    top: pageRefList.current[pageNum].offsetTop,
+    behavior: 'smooth',
+  });
+};
+```
+
+window 객체가 제공하는 scrollTo 메서드는 두가지 방식으로 인자를 건네줄 수 있습니다.
+
+첫번째 방식은 위와 같이 top , behavior 그리고 예제에는 없지만 left 속성을 지정하는 방법입니다.
+
+두번째 방식은
+
+```jsx
+window.scrollTo(x - 좌표, y - 좌표);
+```
+
+의 형식으로 넘겨주는 방식이 있습니다.
+
+top, left에는 이동할 좌표값이 들어가게될 것이라는 것을 쉽게 예상할 수 있죠?
+
+behavior는 스크롤을 즉시 적용할지 아니면 부드럽게 애니메이션을 적용할지를 결정하는 속성입니다.
+
+유니온 타입으로 다음 값 중 하나의 문자열을 전달해주어야 해요
+
+`smooth` , `instant` , `auto`
+
+버튼이 눌리면 인수로 받은 페이지넘버에 해당하는 요소가 있는 위치로 부드럽게 이동시켜주는 함수를 만들었다고
+
+해석할 수 있습니다.
+
+이렇게 만든 함수는 나중에 우측 중앙 버튼에서 활용하면 됩니다.
+
+### 한번에 하나의 페이지만 이동할 수 있게 제한하기
+
+```jsx
+const wheelHandler = React.useCallback(
+  (event: WheelEvent) => {
+    event.preventDefault();
+
+    if (1000 > event.timeStamp - timestamp) return;
+
+    if (event.deltaY < 0 && currentPageNum > 1) {
+      windowObj?.scrollTo({
+        top: pageRefList.current[currentPageNum - 1].offsetTop,
+        behavior: 'smooth',
+      });
+      setTimestamp(event.timeStamp);
+    }
+
+    if (event.deltaY > 0 && currentPageNum < totalPageLen) {
+      windowObj?.scrollTo({
+        top: pageRefList.current[currentPageNum + 1].offsetTop,
+        behavior: 'smooth',
+      });
+      setTimestamp(event.timeStamp);
+    }
+  },
+  [currentPageNum, timestamp, totalPageLen, windowObj],
+);
+
+React.useEffect(() => {
+  windowObj?.addEventListener('wheel', wheelHandler, { passive: false });
+  return () => {
+    windowObj?.removeEventListener('wheel', wheelHandler);
+  };
+}, [wheelHandler, windowObj]);
+```
+
+한번에 하나의 페이지만 이동할 수 있게 제한하는 것은 생각보다 까다로운 일입니다.
+
+왜 그런 것일까요?
+
+그것은 우리가 마우스휠을 굴려 스크롤을 올리고 , 내리는 행위를 막아줄 필요성이 있기 때문입니다.
+
+즉 이벤트의 기본동작을 막는 행위가 필요합니다.
+
+`event.preventDefault()` 메서드를 모든 휠 이벤트에 대해 호출해주어야
+
+휠을 굴리는 것을 통해 스크롤을 내리고 올리는 것을 막을 수 있으니까요
+
+만약 한번에 하나의 페이지만 이동시켜주기 위해 단순히
+
+1초에 한번만 이벤트핸들러가 동작하도록 throttling을 걸게되면
+
+preventDefault 역시 1초에 한번만 호출되게 되고
+
+이렇게 되면 **우리가 지정한 휠 이벤트가 브라우저의 기본 동작과 충돌하게되어**
+
+어색한 결과가 나오게 됩니다.
+
+이를 해결하기 위해 처음에는 throttling을 걸어보기도하고
+
+setTimeout 함수를 활용해보는 등 여러가지 시도를 해보았는데 시도를 해보며 이벤트 객체를 확인하던 중 해결 방법을 깨닫게 되었습니다.
+
+[MDN의 timeStamp Property 소개](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp)
+
+timeStamp 속성은 이벤트 객체가 생성된 시간을 밀리초 단위로 반환해주는 속성입니다.
+
+> 즉 모든 이벤트에 대해 preventDefault()는 수행을 하면서
+
+> 페이지가 스크롤링되고 있을때의 timeStamp를 기억해두고
+
+> 그 타임스탬프와 현재 timeStamp를 비교했을 때 일정 값 이상이 차이가 있어야만
+
+> 스크롤링을 허용해주면 기본 동작은 항상 막으면서 일정 간격으로만 스크롤링이 수행되게 할 수 있습니다!
+
+```jsx
+React.useEffect(() => {
+  windowObj?.addEventListener('wheel', wheelHandler, { passive: false });
+  return () => {
+    windowObj?.removeEventListener('wheel', wheelHandler);
+  };
+}, [wheelHandler, windowObj]);
+```
+
+그리고 useEffect 부분을 살펴보면 낯선 옵션객체가 눈에 띕니다.
+
+passive 속성은 [EventListenerOptions에 대한 소개](https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md)를 읽어보시는 것을 추천드립니다.
+
+[Understanding Renderer Process](https://velog.io/@sejinkim/Passive-Event-Listeners)라는 글도 추천드립니다.
+
+간단하게 소개하면 passive의 값이 true인 경우에는 preventDefault()를 절대 호출하지 않을 것임을 약속하는 것
+
+반대로 false 인 경우에는 preventDefault()를 호출할 수 있다는 것을 알려주는 것입니다.
+
+우리는 preventDefault()를 적극적으로 이용해야 하는 상황이니 passive는 false로 명시해주겠습니다.
+
+참고로 대부분의 경우 passive 속성은 따로 지정해주지 않아도 false입니다!
+
+### 이제 커스텀훅을 사용해보자
+
+```jsx
+'use client';
+
+import useFullPage, { PageList } from '@/hooks/useFullPage';
+import { cn } from '@/utils';
+
+interface MainFullPageComponentProps {}
+
+const ComponentA = () => <div>안녕하세요</div>;
+
+const pageObjArray: PageList[] = [
+  { pageNum: 1, background: 'bg-[#ffeaa7]', component: ComponentA },
+  { pageNum: 2, background: 'bg-[#fab1a0]', component: ComponentA },
+  { pageNum: 3, background: 'bg-[#fdcb6e]', component: ComponentA },
+  { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
+];
+
+const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
+  const { pageRefList, pageButtonHandler, currentPageNum } =
+    useFullPage(pageObjArray);
+
+  return (
+    <div>
+      {pageObjArray.map((item, idx) => {
+        return (
+          <div
+            key={idx}
+            ref={(element) => {
+              pageRefList.current[item.pageNum] = element!;
+            }}
+            className={`w-screen h-screen  ${item.background}`}
+          >
+            <item.component />
+            <span>{item.pageNum}</span>
+          </div>
+        );
+      })}
+      <div className=" fixed top-1/2 right-10 smooth">
+        <div className=" flex flex-col gap-2">
+          {pageObjArray.map((item, idx) => {
+            return (
+              <div
+                key={item.pageNum}
+                className={cn(
+                  'rounded-full transition-all w-4 h-4',
+                  currentPageNum === item.pageNum ? 'bg-black' : 'bg-gray-400',
+                )}
+                onClick={() => {
+                  pageButtonHandler(item.pageNum);
+                }}
+              ></div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MainFullPageComponent;
+
+```
+
+이렇게 타입이 맞는 배열만 넣어주면 바로 사용할 수 있는 커스텀훅을 만들 수 있었습니다.
+
+실제 동작하는 것은 제 블로그 메인페이지에서 쉽게 확인할 수 있을거에요!
+
+## 마치며
+
+잘 제공되는 라이브러리를 사용하는 것도 좋지만
+
+UI라이브러리들은 내 필요와 상황에 꼭 맞는 라이브러리를 찾기 제한되는 경우가 많은 것 같습니다.
+
+내 필요와 쓰임에 맞게 잘 구현한 코드는 다른 프로젝트에서도 활용할 수 있으니
+
+한번 직접 구현해보시는 것도 좋을 것 같습니다.
+
+읽어주셔서 감사합니다.

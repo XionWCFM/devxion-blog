@@ -5,7 +5,7 @@ import { cn } from '@/utils';
 
 interface MainFullPageComponentProps {}
 
-const ComponentA = () => <div>엄준식</div>;
+const ComponentA = () => <div>안녕하세요</div>;
 
 const pageObjArray: PageList[] = [
   { pageNum: 1, background: 'bg-[#ffeaa7]', component: ComponentA },

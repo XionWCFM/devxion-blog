@@ -16,7 +16,7 @@ const useFullPage = (pageList: PageList[]) => {
 
   const currentPageChange = useThrottle(
     React.useCallback(
-      (event: Event) => {
+      (event: WheelEvent) => {
         let scroll = windowObj?.scrollY!;
         for (let i = 1; i <= totalPageLen; i++) {
           if (
@@ -74,9 +74,9 @@ const useFullPage = (pageList: PageList[]) => {
   }, []);
 
   React.useEffect(() => {
-    windowObj?.addEventListener('scroll', currentPageChange);
+    windowObj?.addEventListener('wheel', currentPageChange, { passive: true });
     return () => {
-      windowObj?.removeEventListener('scroll', currentPageChange);
+      windowObj?.removeEventListener('wheel', currentPageChange);
     };
   }, [currentPageChange, windowObj]);
 
