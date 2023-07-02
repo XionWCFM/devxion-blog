@@ -9,7 +9,7 @@ import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
 
 const HighlightVariants = cva(
   ` transition-colors duration-300 hover:text-yellow-400 dark:hover:text-yellow-400
-    font-extrabold text-zinc-600 dark:text-zinc-300
+    font-extrabold text-zinc-800 dark:text-white
   `,
   {
     variants: {
