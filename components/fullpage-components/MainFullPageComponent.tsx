@@ -14,6 +14,8 @@ const pageObjArray: PageList[] = [
   { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
 ];
 
+
+
 const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
   const { pageRefList, pageButtonHandler, currentPageNum } =
     useFullPage(pageObjArray);

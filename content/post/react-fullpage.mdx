@@ -520,6 +520,73 @@ export default MainFullPageComponent;
 
 실제 동작하는 것은 제 블로그 메인페이지에서 쉽게 확인할 수 있을거에요!
 
+### 휠이벤트 최적화하기
+
+항상 preventDefault()를 실행시켜줘야하는 이벤트는 어쩔 수 없지만
+
+그렇지 않은 휠 이벤트는 throttling을 통해 너무 많이 사용되지 않도록 억제해주면 좋을 것 입니다.
+
+이를 위해 throttle 기능을 수행하는 useThrottle 커스텀훅을 만듭니다.
+
+```jsx
+import { useRef } from 'react';
+
+function useThrottle<T extends any[]>(
+  callback: (...params: T) => void,
+  time: number,
+) {
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  return (...params: T) => {
+    if (!timer.current) {
+      timer.current = setTimeout(() => {
+        callback(...params);
+        timer.current = null;
+      }, time);
+    }
+  };
+}
+
+export default useThrottle;
+
+```
+
+```jsx
+const currentPageChange = useThrottle(
+    React.useCallback(
+      (event: WheelEvent) => {
+        let scroll = windowObj?.scrollY!;
+        for (let i = 1; i <= totalPageLen; i++) {
+          if (
+            scroll >
+              pageRefList.current[i].offsetTop - windowObj!.outerHeight / 3 &&
+            scroll <
+              pageRefList.current[i].offsetTop -
+                windowObj!.outerHeight / 3 +
+                pageRefList.current[i].offsetHeight
+          ) {
+            setCurrentPageNum(i);
+            break;
+          }
+        }
+      },
+      [totalPageLen, windowObj],
+    ),
+    500,
+  );
+
+```
+
+이제 만들어둔 useThrottle 커스텀훅을
+
+currentPageChange 함수에 래핑해주는 것을 통해
+
+너무 많이 호출되지 않도록 억제해주겠습니다.
+
+앞선 상황에선 useThrottle로 해결할 수 없는 문제였지만
+
+대부분의 스크롤 이벤트는 쓰로틀링을 걸어주는 것을 통해 많이 최적화할 수 있습니다!
+
 ## 마치며
 
 잘 제공되는 라이브러리를 사용하는 것도 좋지만
