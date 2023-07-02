@@ -2,6 +2,7 @@ import { allPosts } from '@/.contentlayer/generated';
 import Mdx from '@/components/helper-components/Mdx';
 import PostTitle from '@/components/ui-components/PostTitle';
 import { dateFormat } from '@/utils';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 interface pageProps {
@@ -16,10 +17,33 @@ export const generateStaticParams = () => {
   }));
 };
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = ({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata => {
   const post = allPosts.find((post) => post.slugAsParams === params.slug);
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
-  return { title: post.title };
+  return {
+    title: post.title,
+    description: post.description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    authors: [{ name: 'giljong yu', url: 'https://devxion-blog.vercel.app' }],
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.description,
+      locale: 'ko-KR',
+      siteName: 'https://devxion-blog.vercel.app',
+    },
+    twitter: {
+      title: post.title,
+      description: post.description,
+    },
+  };
 };
 
 const getPostFromParams = (slug: string) => {

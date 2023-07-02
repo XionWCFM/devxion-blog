@@ -1,11 +1,9 @@
 ---
 title: video 태그 자동재생 시키기
-description: autoplay 줬는데 외않되!!
-date: 2023-06-30
+description: 내 autoplay가 의미없던 이유
+date: 2023-06-31
 tags: html
 ---
-
-![image](/rabbit.jpg)
 
 ## HTML Video Tag 알아보기
 
@@ -54,6 +52,8 @@ calssName은 리액트 문법을 따르느라 그런것이니 제외하고
 사용자 경험이 매우 저해됩니다.
 
 따라서 구글크롬등의 브라우저는 오토플레이 속성을 block해둡니다.
+
+[구글의 Autoplay policy in Chrome 정책](https://developer.chrome.com/blog/autoplay) 을 확인해보세요
 
 이를 해결하기 위해서는 아까 살펴본 muted 옵션을 활성화하여
 
@@ -123,14 +123,8 @@ object-fit 속성을 cover로 부여하면 콘텐츠의 가로세로비는 유�
 
 만약 가로세로비가 일치하지 않으면 요소를 조금 확대하고 가장자리를 자릅니다.
 
-https://developer.mozilla.org/ko/docs/Web/CSS/object-fit
-
-해당 링크를 참고해보세요!
-
-다만 주의할점은 vh, vw 단위는 부모속성의 크기에 영향을 받는다는 점입니다.
-
-즉 부모속성의 크기가 정해져있는 경우에는 화면을 꽉채우지 않을 수 있습니다.
-
-이 점 유의하시기 바랍니다!
+[MDN의 css object-fit에 대한 아티클](https://developer.mozilla.org/ko/docs/Web/CSS/object-fit) 을 참고해보세요!
 
 ## 마치며
+
+읽어주셔서 감사합니다.

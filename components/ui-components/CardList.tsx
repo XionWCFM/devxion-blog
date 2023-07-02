@@ -1,5 +1,5 @@
 import { DocumentTypes } from '@/.contentlayer/generated';
-import { dateFormat } from '@/utils';
+import { dateFormat, getSortedPosts } from '@/utils';
 import Link from 'next/link';
 import Tag from '../atom-components/Tag';
 
@@ -8,10 +8,11 @@ interface PostCardProps {
 }
 
 const CardList = ({ docArray }: PostCardProps) => {
+  const documentSortedArray = getSortedPosts(docArray);
   return (
     <div className="smooth">
       <div className=" grid grid-cols-1 lg:grid-cols-2">
-        {docArray.map((post) => (
+        {documentSortedArray.map((post) => (
           <Link
             key={post.title}
             href={`${post.type.toLowerCase()}/${post.slugAsParams}`}
