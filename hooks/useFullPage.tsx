@@ -12,10 +12,7 @@ const useFullPage = (pageList: PageList[]) => {
   const totalPageLen = pageList.length;
   const pageRefList = React.useRef<HTMLDivElement[]>([]);
   const [isExecuting, setIsExecuting] = React.useState(false);
-
-  React.useEffect(() => {
-    if (window !== undefined) setWindowObj(window);
-  }, []);
+  const [timestamp, setTimestamp] = React.useState(0);
 
   const currentPageChange = React.useCallback(
     (event: Event) => {
@@ -47,31 +44,31 @@ const useFullPage = (pageList: PageList[]) => {
   const wheelHandler = React.useCallback(
     (event: WheelEvent) => {
       event.preventDefault();
-      if (!isExecuting) {
-        setIsExecuting(true);
 
-        if (event.deltaY < 0 && currentPageNum > 1) {
-          windowObj?.scrollTo({
-            top: pageRefList.current[currentPageNum - 1].offsetTop,
-            behavior: 'smooth',
-          });
-        }
+      if (1000 > event.timeStamp - timestamp) return;
 
-        if (event.deltaY > 0 && currentPageNum < totalPageLen) {
-          windowObj?.scrollTo({
-            top: pageRefList.current[currentPageNum + 1].offsetTop,
-            behavior: 'smooth',
-          });
-          setCurrentPageNum((state) => state + 1);
-        }
+      if (event.deltaY < 0 && currentPageNum > 1) {
+        windowObj?.scrollTo({
+          top: pageRefList.current[currentPageNum - 1].offsetTop,
+          behavior: 'smooth',
+        });
+        setTimestamp(event.timeStamp);
       }
 
-      setTimeout(() => {
-        setIsExecuting(false);
-      }, 600);
+      if (event.deltaY > 0 && currentPageNum < totalPageLen) {
+        windowObj?.scrollTo({
+          top: pageRefList.current[currentPageNum + 1].offsetTop,
+          behavior: 'smooth',
+        });
+        setTimestamp(event.timeStamp);
+      }
     },
-    [currentPageNum, isExecuting, totalPageLen, windowObj],
+    [currentPageNum, timestamp, totalPageLen, windowObj],
   );
+
+  React.useEffect(() => {
+    if (window !== undefined) setWindowObj(window);
+  }, []);
 
   React.useEffect(() => {
     windowObj?.addEventListener('scroll', currentPageChange);
