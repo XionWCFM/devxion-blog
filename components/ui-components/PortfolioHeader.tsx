@@ -2,8 +2,9 @@
 
 import { cn } from '@/utils';
 import { cva } from 'class-variance-authority';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import Link from 'next/link';
 import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
 
 const HighlightVariants = cva(
