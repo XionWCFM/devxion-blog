@@ -1,6 +1,7 @@
 import { allCheatSheets } from '@/.contentlayer/generated';
 import { Mdx, PostTitle } from '@/components';
 import { dateFormat } from '@/utils';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 interface pageProps {
@@ -14,12 +15,35 @@ export const generateStaticParams = () => {
   }));
 };
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = ({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata => {
   const cheatsheet = allCheatSheets.find(
     (cheatsheet) => cheatsheet.slugAsParams === params.slug,
   );
   if (!cheatsheet) throw new Error(`Post not found for slug: ${params.slug}`);
-  return { title: cheatsheet.title };
+  return {
+    title: cheatsheet.title,
+    description: cheatsheet.description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    authors: [{ name: 'giljong yu', url: 'https://devxion-blog.vercel.app' }],
+    openGraph: {
+      type: 'article',
+      title: cheatsheet.title,
+      description: cheatsheet.description,
+      locale: 'ko-KR',
+      siteName: 'https://devxion-blog.vercel.app',
+    },
+    twitter: {
+      title: cheatsheet.title,
+      description: cheatsheet.description,
+    },
+  };
 };
 
 const getCheatSheetFromParams = (slug: string) => {
