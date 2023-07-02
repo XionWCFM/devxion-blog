@@ -1,4 +1,5 @@
 import React from 'react';
+import useThrottle from './useThrottle';
 
 export interface PageList<T = any> {
   pageNum: number;
@@ -11,27 +12,29 @@ const useFullPage = (pageList: PageList[]) => {
   const [currentPageNum, setCurrentPageNum] = React.useState(1);
   const totalPageLen = pageList.length;
   const pageRefList = React.useRef<HTMLDivElement[]>([]);
-  const [isExecuting, setIsExecuting] = React.useState(false);
   const [timestamp, setTimestamp] = React.useState(0);
 
-  const currentPageChange = React.useCallback(
-    (event: Event) => {
-      let scroll = windowObj?.scrollY!;
-      for (let i = 1; i <= totalPageLen; i++) {
-        if (
-          scroll >
-            pageRefList.current[i].offsetTop - windowObj!.outerHeight / 3 &&
-          scroll <
-            pageRefList.current[i].offsetTop -
-              windowObj!.outerHeight / 3 +
-              pageRefList.current[i].offsetHeight
-        ) {
-          setCurrentPageNum(i);
-          break;
+  const currentPageChange = useThrottle(
+    React.useCallback(
+      (event: Event) => {
+        let scroll = windowObj?.scrollY!;
+        for (let i = 1; i <= totalPageLen; i++) {
+          if (
+            scroll >
+              pageRefList.current[i].offsetTop - windowObj!.outerHeight / 3 &&
+            scroll <
+              pageRefList.current[i].offsetTop -
+                windowObj!.outerHeight / 3 +
+                pageRefList.current[i].offsetHeight
+          ) {
+            setCurrentPageNum(i);
+            break;
+          }
         }
-      }
-    },
-    [totalPageLen, windowObj],
+      },
+      [totalPageLen, windowObj],
+    ),
+    500,
   );
 
   const pageButtonHandler = (pageNum: number) => {
