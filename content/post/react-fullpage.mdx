@@ -302,9 +302,9 @@ useEffect를 이용하여 만들어준 currentPageChange 함수를 이벤트 리
 
 ```jsx
 React.useEffect(() => {
-  windowObj?.addEventListener('wheel', currentPageChange);
+  windowObj?.addEventListener('scroll', currentPageChange);
   return () => {
-    windowObj?.removeEventListener('wheel', currentPageChange);
+    windowObj?.removeEventListener('scroll', currentPageChange);
   };
 }, [currentPageChange, windowObj]);
 ```
@@ -314,6 +314,14 @@ useEffect가 제공하는 클린업 함수를 이용하여
 언마운트가 되는 시점에 달아두었던 이벤트리스너를 정리하여
 
 메모리 누수를 막는 것은 성능 상 중요한 일입니다.
+
+페이지가 옮겨지는 행동이 휠을 통한 스크롤만 있는 것이 아니라
+
+버튼을 클릭함으로 인해 옮겨지기도 하기때문에
+
+적절한 이벤트 캐치를 위해서 wheel event 대신
+
+scroll 이벤트를 지정해주는 것이 필요합니다.
 
 ### onClick 되었을때 이동시켜줄 함수 만들기
 

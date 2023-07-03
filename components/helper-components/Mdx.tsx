@@ -64,6 +64,7 @@ const components: MDXComponents = {
     ...props
   }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
+      target={'_blank'}
       className={cn(
         'font-medium underline underline-offset-4 hover:text-yellow-500 transition-colors duration-300',
         className,
