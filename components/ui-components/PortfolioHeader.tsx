@@ -2,7 +2,6 @@
 
 import { cn } from '@/utils';
 import { cva } from 'class-variance-authority';
-import { usePathname } from 'next/navigation';
 
 import Link from 'next/link';
 import DarkModeToggleBtn from '../helper-components/DarkModeToggleBtn';
@@ -30,8 +29,6 @@ const navigateArray = ['post', 'cheatsheet', 'category', 'about'];
 interface HeaderProps {}
 
 const Header = ({}: HeaderProps) => {
-  const currentRoute = usePathname().split('/')[1];
-
   return (
     <header className=" fixed pb-4 pt-3 smooth top-0 left-0 right-0 ">
       <div className=" flex lg:flex-row flex-col items-center lg:justify-between gap-y-8 max-w-[1024px] mx-auto px-12 ">
@@ -46,11 +43,7 @@ const Header = ({}: HeaderProps) => {
               <Link
                 href={item === 'category' ? `/${item}/all` : `/${item}`}
                 key={item}
-                className={
-                  currentRoute === item
-                    ? cn(HighlightVariants({ variant: 'highlight' }))
-                    : cn(HighlightVariants())
-                }
+                className={cn(HighlightVariants())}
               >
                 {item}
               </Link>

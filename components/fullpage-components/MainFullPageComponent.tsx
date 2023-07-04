@@ -1,7 +1,7 @@
 'use client';
 
 import useFullPage, { PageList } from '@/hooks/useFullPage';
-import { cn } from '@/utils';
+import ScrollButton from './ScrollButton';
 
 interface MainFullPageComponentProps {}
 
@@ -13,8 +13,6 @@ const pageObjArray: PageList[] = [
   { pageNum: 3, background: 'bg-[#fdcb6e]', component: ComponentA },
   { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
 ];
-
-
 
 const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
   const { pageRefList, pageButtonHandler, currentPageNum } =
@@ -38,20 +36,14 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
       })}
       <div className=" fixed top-1/2 right-10 smooth">
         <div className=" flex flex-col gap-2">
-          {pageObjArray.map((item, idx) => {
-            return (
-              <div
-                key={item.pageNum}
-                className={cn(
-                  'rounded-full transition-all w-4 h-4',
-                  currentPageNum === item.pageNum ? 'bg-black' : 'bg-gray-400',
-                )}
-                onClick={() => {
-                  pageButtonHandler(item.pageNum);
-                }}
-              ></div>
-            );
-          })}
+          {pageObjArray.map((item, idx) => (
+            <ScrollButton
+              key={`btn${idx}`}
+              pageButtonHandler={pageButtonHandler}
+              item={item}
+              currentPageNum={currentPageNum}
+            />
+          ))}
         </div>
       </div>
     </div>
