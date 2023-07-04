@@ -5,6 +5,7 @@ export { default as Paragraph } from './atom-components/Paragraph';
 export { default as Tag } from './atom-components/Tag';
 // fullpage
 export { default as MainFullPageComponent } from './fullpage-components/MainFullPageComponent';
+export { default as ScrollButton } from './fullpage-components/ScrollButton';
 // helper
 export { default as DarkModeToggleBtn } from './helper-components/DarkModeToggleBtn';
 export { default as Mdx } from './helper-components/Mdx';
