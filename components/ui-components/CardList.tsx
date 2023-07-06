@@ -9,13 +9,15 @@ interface PostCardProps {
 
 const CardList = ({ docArray }: PostCardProps) => {
   const documentSortedArray = getSortedPosts(docArray);
+  console.log(documentSortedArray);
   return (
     <div className="smooth">
       <div className=" grid grid-cols-1 lg:grid-cols-2">
         {documentSortedArray.map((post) => (
           <Link
             key={post.title}
-            href={`${post.type.toLowerCase()}/${post.slugAsParams}`}
+            href={`/${post.type.toLowerCase()}/${post.slugAsParams}`}
+            replace
           >
             <figure className=" flex flex-col md:flex-row md:items-center justify-between rounded-lg px-4 py-2 cursor-pointer mr-4 mt-4 transition-all duration-300 border-2 border-transparent hover:border-yellow-500">
               <div className=" flex flex-col gap-2 overflow-hidden whitespace-nowrap break-words">

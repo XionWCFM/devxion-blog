@@ -38,7 +38,8 @@ const Page = ({ params: { slug } }: pageProps) => {
       <div className=" mt-4 flex gap-2">
         {Object.keys(tags).map((tag, i) => (
           <div key={`tag${i}`}>
-            <Link href={`category/${tag}`}>
+            {/* <Link href={`${tag}`}> */}
+            <Link href={`${tag}`}>
               <Tag className={slug === tag ? 'ct scale-125 mx-3' : ''}>
                 {tag}
               </Tag>
