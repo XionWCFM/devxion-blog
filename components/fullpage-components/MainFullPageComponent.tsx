@@ -29,8 +29,10 @@ const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
             }}
             className={`w-screen h-screen  ${item.background}`}
           >
-            <item.component />
-            <span>{item.pageNum}</span>
+            <div className=" h-full w-full justify-center items-center flex">
+              <item.component />
+              <span>{item.pageNum}</span>
+            </div>
           </div>
         );
       })}
