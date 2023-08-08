@@ -1,4 +1,5 @@
-export const retrospect = {
+import { Retrospect } from '@/types/resume';
+export const retrospect: Retrospect = {
   type: 'retrospect',
   title: '간헐적 회고',
   highlightDescription: [
@@ -21,15 +22,15 @@ export const retrospect = {
     ],
     [
       {
-        hightlight: false,
+        highlight: false,
         sentence: '시작한 비 정기적이고',
       },
       {
-        hightlight: true,
+        highlight: true,
         sentence: '개인적인',
       },
       {
-        hightlight: false,
+        highlight: false,
         sentence: '회고입니다.',
       },
     ],

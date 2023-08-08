@@ -21,6 +21,7 @@ interface ResumeItem {
   techStack: string[];
   role: string[];
   asset: string[];
+  createdAt: string;
 }
 
 interface ResumeType {
@@ -38,29 +39,30 @@ interface ResumeType {
 
 type HighlightParagraph = { highlight: boolean; sentence: string }[][];
 
-interface Channel extends ResumeType {
+export interface Channel extends ResumeType {
   type: 'channel';
   itemList: Pick<ResumeItem, 'subject' | 'url'>[];
 }
 
-interface Contact extends ResumeType {
+export interface Contact extends ResumeType {
   type: 'contact';
   itemList: Pick<ResumeItem, 'subject' | 'content'>[];
 }
 
-interface OtherExperience extends ResumeType {
+export interface OtherExperience extends ResumeType {
   type: 'otherExperience';
-  itemList: Pick<ResumeItem, 'subject' | 'startDate' | 'endDate' | 'content'>;
+  itemList: Pick<ResumeItem, 'subject' | 'startDate' | 'endDate' | 'content'>[];
 }
 
-interface PeerFeedback extends ResumeType {
+export interface PeerFeedback extends ResumeType {
+  type: 'peerFeedback';
   itemList: Pick<
     ResumeItem,
     'belong' | 'position' | 'name' | 'hightlightContent'
-  >;
+  >[];
 }
 
-interface Project extends ResumeType {
+export interface Project extends ResumeType {
   itemList: Pick<
     ResumeItem,
     | 'subject'
@@ -72,11 +74,24 @@ interface Project extends ResumeType {
     | 'techStack'
     | 'role'
     | 'asset'
-  >;
+  >[];
 }
 
-interface Retrospect extends ResumeType {
+export interface Retrospect extends ResumeType {
+  type: 'retrospect';
   highlightDescription: HighlightParagraph;
   url: string;
-  asset: string;
+  asset: string[];
+}
+
+export interface Study extends ResumeType {
+  type: 'study';
+  highlightDescription: HighlightParagraph;
+  itemList: Pick<ResumeItem, 'subject' | 'url' | 'highlightDescription'>[];
+}
+
+export interface Article extends ResumeType {
+  type: 'article';
+  description: string;
+  itemList: Pick<ResumeItem, 'subject' | 'createdAt' | 'url'>[];
 }
