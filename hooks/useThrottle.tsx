@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-function useThrottle<T extends any[]>(
+function useThrottle<T extends unknown[]>(
   callback: (...params: T) => void,
   time: number,
 ) {

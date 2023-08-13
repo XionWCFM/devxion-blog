@@ -89,4 +89,5 @@ const useFullPage = (pageList: PageList[]) => {
   };
 };
 
+export type FullPageReturnType = ReturnType<typeof useFullPage>;
 export default useFullPage;
