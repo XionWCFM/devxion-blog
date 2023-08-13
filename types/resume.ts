@@ -95,3 +95,4 @@ export interface Article extends ResumeType {
   description: string;
   itemList: Pick<ResumeItem, 'subject' | 'createdAt' | 'url'>[];
 }
+
