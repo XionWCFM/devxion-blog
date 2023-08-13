@@ -1,11 +1,6 @@
 import React from 'react';
 import useThrottle from './useThrottle';
-
-export interface PageList<T = any> {
-  pageNum: number;
-  background: string;
-  component: (arg: T) => React.JSX.Element;
-}
+import { PageList } from '@/types/fullpage';
 
 const useFullPage = (pageList: PageList[]) => {
   const [windowObj, setWindowObj] = React.useState<Window>();
@@ -18,7 +13,6 @@ const useFullPage = (pageList: PageList[]) => {
     React.useCallback(
       (event: Event) => {
         let scroll = windowObj?.scrollY!;
-        console.log('왜 실행됨?');
         for (let i = 1; i <= totalPageLen; i++) {
           if (
             scroll >

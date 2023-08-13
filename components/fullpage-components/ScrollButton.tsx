@@ -1,5 +1,5 @@
-import { PageList } from '@/hooks/useFullPage';
-import { cn } from '@/utils';
+import { cn, matchCss } from '@/utils';
+import { PageList } from '@/types/fullpage';
 import Button from '../atom-components/Button';
 
 interface ScrollButtonProps {
@@ -18,7 +18,9 @@ const ScrollButton = ({
       onClick={() => pageButtonHandler(item.pageNum)}
       className={cn(
         'rounded-full w-4 h-4',
-        currentPageNum === item.pageNum ? 'bg-black' : 'bg-gray-400',
+        matchCss(currentPageNum, item.pageNum)
+          ? 'bg-orange-500'
+          : 'bg-gray-200',
       )}
     ></Button>
   );

@@ -1,9 +1,8 @@
 'use client';
-
-import useFullPage, { PageList } from '@/hooks/useFullPage';
+import useFullPage from '@/hooks/useFullPage';
+import { PageList } from '@/types/fullpage';
 import ScrollButton from './ScrollButton';
-
-interface MainFullPageComponentProps {}
+import PageRenderer from './PageRenderer';
 
 const ComponentA = () => <div>안녕하세요</div>;
 
@@ -14,28 +13,13 @@ const pageObjArray: PageList[] = [
   { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
 ];
 
-const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
+const MainFullPageComponent = () => {
   const { pageRefList, pageButtonHandler, currentPageNum } =
     useFullPage(pageObjArray);
 
   return (
     <div>
-      {pageObjArray.map((item, idx) => {
-        return (
-          <div
-            key={idx}
-            ref={(element) => {
-              pageRefList.current[item.pageNum] = element!;
-            }}
-            className={`w-screen h-screen  ${item.background}`}
-          >
-            <div className=" h-full w-full justify-center items-center flex">
-              <item.component />
-              <span>{item.pageNum}</span>
-            </div>
-          </div>
-        );
-      })}
+      <PageRenderer pageList={pageObjArray} pageRefList={pageRefList} />
       <div className=" fixed top-1/2 right-10 smooth">
         <div className=" flex flex-col gap-2">
           {pageObjArray.map((item, idx) => (
