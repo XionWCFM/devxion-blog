@@ -17,14 +17,11 @@ const pageObjArray: PageList[] = [
 const fullpageDTO = new FullpageDTO(pageObjArray);
 
 const MainFullPageComponent = () => {
-  const fullPageResult = useFullPage(pageObjArray);
+  const fullpageResult = useFullPage(fullpageDTO);
   return (
     <>
-      <PageRenderer fullpageDTO={fullpageDTO} fullPageResult={fullPageResult} />
-      <ScrollRenderer
-        fullpageDTO={fullpageDTO}
-        fullPageResult={fullPageResult}
-      />
+      <PageRenderer fullpageResult={fullpageResult} />
+      <ScrollRenderer fullpageResult={fullpageResult} />
     </>
   );
 };

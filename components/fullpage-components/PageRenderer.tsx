@@ -1,18 +1,15 @@
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 import { FullPageReturnType } from '@/hooks/useFullPage';
-import { PageList } from '@/types/fullpage';
-import { FullpageDTO } from '@/dto/FullpageDTO';
 
 interface PageRendererProps {
-  fullpageDTO: FullpageDTO;
-  fullPageResult: FullPageReturnType;
+  fullpageResult: FullPageReturnType;
 }
 
-const PageRenderer = ({ fullpageDTO, fullPageResult }: PageRendererProps) => {
-  const { pageRefList } = fullPageResult;
+const PageRenderer = ({ fullpageResult }: PageRendererProps) => {
+  const { pageRefList } = fullpageResult;
   return (
     <>
-      {fullpageDTO.pageList.map((item, idx) => {
+      {fullpageResult.fullpageDTO.pageList.map((item, idx) => {
         return (
           <div
             key={idx}

@@ -1,11 +1,11 @@
 import React from 'react';
 import useThrottle from './useThrottle';
-import { PageList } from '@/types/fullpage';
+import { FullpageDTO } from '@/dto/FullpageDTO';
 
-const useFullPage = (pageList: PageList[]) => {
+const useFullPage = (fullpageDTO: FullpageDTO) => {
   const [windowObj, setWindowObj] = React.useState<Window>();
   const [currentPageNum, setCurrentPageNum] = React.useState(1);
-  const totalPageLen = pageList.length;
+  const totalPageLen = fullpageDTO.pageList.length;
   const pageRefList = React.useRef<HTMLDivElement[]>([]);
   const [timestamp, setTimestamp] = React.useState(0);
 
@@ -86,6 +86,7 @@ const useFullPage = (pageList: PageList[]) => {
     pageButtonHandler,
     currentPageNum,
     pageRefList,
+    fullpageDTO,
   };
 };
 

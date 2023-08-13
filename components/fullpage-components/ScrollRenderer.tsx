@@ -5,16 +5,15 @@ import { FullPageReturnType } from '@/hooks/useFullPage';
 import { FullpageDTO } from '@/dto/FullpageDTO';
 
 interface ScrollRendererProps {
-    fullpageDTO:FullpageDTO
-  fullPageResult: FullPageReturnType;
+  fullpageResult: FullPageReturnType;
 }
 
-const ScrollRenderer = ({ fullpageDTO, fullPageResult }: ScrollRendererProps) => {
-  const { pageButtonHandler, currentPageNum } = fullPageResult;
+const ScrollRenderer = ({ fullpageResult }: ScrollRendererProps) => {
+  const { pageButtonHandler, currentPageNum } = fullpageResult;
   return (
     <div className=" fixed top-1/2 right-10 smooth">
       <div className=" flex flex-col gap-2">
-        {fullpageDTO.pageList.map((item, idx) => (
+        {fullpageResult.fullpageDTO.pageList.map((item, idx) => (
           <ScrollButton
             key={`btn${idx}`}
             pageButtonHandler={pageButtonHandler}
