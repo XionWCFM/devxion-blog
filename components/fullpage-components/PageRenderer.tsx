@@ -20,7 +20,6 @@ const PageRenderer = ({ fullpageResult }: PageRendererProps) => {
           >
             <div className=" h-full w-full justify-center items-end flex">
               {item.component}
-              <span>{item.pageNum}</span>
             </div>
           </div>
         );

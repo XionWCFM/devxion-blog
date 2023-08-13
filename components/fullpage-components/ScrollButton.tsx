@@ -19,7 +19,7 @@ const ScrollButton = ({
       className={cn(
         'rounded-full w-4 h-4',
         matchCss(currentPageNum, item.pageNum)
-          ? 'bg-orange-500'
+          ? 'bg-yellow-500'
           : 'bg-gray-200',
       )}
     ></Button>
