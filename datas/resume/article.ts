@@ -1,4 +1,6 @@
-export const article = {
+import { Article } from '@/types/resume';
+
+export const article: Article = {
   title: 'Article',
   type: 'article',
   description: '제 기술 블로그에서 평가가 좋았던 Article을 모았습니다.',

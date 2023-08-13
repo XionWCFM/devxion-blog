@@ -3,6 +3,7 @@ export { default as Button } from './atom-components/Button';
 export { default as HeadingParagraph } from './atom-components/HeadingParagraph';
 export { default as Paragraph } from './atom-components/Paragraph';
 export { default as Tag } from './atom-components/Tag';
+export { default as Centering } from './atom-components/Centering';
 // fullpage
 export { default as MainFullPageComponent } from './fullpage-components/MainFullPageComponent';
 export { default as ScrollButton } from './fullpage-components/ScrollButton';

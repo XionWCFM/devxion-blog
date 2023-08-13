@@ -1,3 +1,17 @@
+type HighlightParagraph = { highlight: boolean; sentence: string }[][];
+
+interface HighlightDescription {
+  highlightDescription: HighlightParagraph;
+}
+
+interface Description {
+  description: string;
+}
+
+interface DescriptionArray {
+  descriptionArray: string[];
+}
+
 interface ResumeItem {
   subject: string;
   url: string;
@@ -34,10 +48,9 @@ interface ResumeType {
     | 'retrospect'
     | 'project'
     | 'study'
-    | 'article';
+    | 'article'
+    | 'aboutme';
 }
-
-type HighlightParagraph = { highlight: boolean; sentence: string }[][];
 
 export interface Channel extends ResumeType {
   type: 'channel';
@@ -77,22 +90,23 @@ export interface Project extends ResumeType {
   >[];
 }
 
-export interface Retrospect extends ResumeType {
+export interface Retrospect extends ResumeType, HighlightDescription {
   type: 'retrospect';
-  highlightDescription: HighlightParagraph;
   url: string;
   asset: string[];
 }
 
-export interface Study extends ResumeType {
+export interface Study extends ResumeType, HighlightDescription {
   type: 'study';
-  highlightDescription: HighlightParagraph;
   itemList: Pick<ResumeItem, 'subject' | 'url' | 'highlightDescription'>[];
 }
 
-export interface Article extends ResumeType {
+export interface Article extends ResumeType, Description {
   type: 'article';
-  description: string;
   itemList: Pick<ResumeItem, 'subject' | 'createdAt' | 'url'>[];
 }
 
+export interface Aboutme extends ResumeType, DescriptionArray {
+  type: 'aboutme';
+  itemList: Pick<ResumeItem, 'subject' | 'content'>[];
+}

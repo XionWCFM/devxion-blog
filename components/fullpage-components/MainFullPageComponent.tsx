@@ -4,20 +4,28 @@ import { PageList } from '@/types/fullpage';
 import PageRenderer from './PageRenderer';
 import { FullpageDTO } from '@/dto/FullpageDTO';
 import ScrollRenderer from './ScrollRenderer';
-
-const ComponentA = () => <div>안녕하세요</div>;
+import MyInfoPage from './pages/MyInfoPage';
+import OtherExperiencePage from './pages/OtherExperiencePage';
+import PeerFeedbackPage from './pages/PeerFeedbackPage';
+import ProjectPage from './pages/ProjectPage';
+import { aboutme, channel, contact } from '@/datas/resume';
 
 const pageObjArray: PageList[] = [
-  { pageNum: 1, background: 'bg-[#fab1a0]', component: ComponentA },
-  { pageNum: 2, background: 'bg-[#fab1a0]', component: ComponentA },
-  { pageNum: 3, background: 'bg-[#fdcb6e]', component: ComponentA },
-  { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
+  {
+    pageNum: 1,
+    component: (
+      <MyInfoPage channel={channel} aboutme={aboutme} contact={contact} />
+    ),
+  },
+  { pageNum: 2, component: <OtherExperiencePage /> },
+  { pageNum: 3, component: <PeerFeedbackPage /> },
+  { pageNum: 4, component: <ProjectPage /> },
 ];
 
-const fullpageDTO = new FullpageDTO(pageObjArray);
-
 const MainFullPageComponent = () => {
+  const fullpageDTO = new FullpageDTO(pageObjArray);
   const fullpageResult = useFullPage(fullpageDTO);
+
   return (
     <>
       <PageRenderer fullpageResult={fullpageResult} />

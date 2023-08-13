@@ -1,4 +1,6 @@
-export const channel = {
+import { Channel } from '@/types/resume';
+
+export const channel: Channel = {
   title: 'Channel',
   type: 'channel',
   itemList: [

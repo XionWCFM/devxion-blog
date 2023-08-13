@@ -6,3 +6,4 @@ export * from './project';
 export * from './retrospect';
 export * from './study';
 export * from './article';
+export * from './aboutme';
