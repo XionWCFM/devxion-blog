@@ -33,6 +33,7 @@ const useFullPage = (fullpageDTO: FullpageDTO) => {
   );
 
   const pageButtonHandler = (pageNum: number) => {
+    console.log(pageNum);
     windowObj?.scrollTo({
       top: pageRefList.current[pageNum].offsetTop,
       behavior: 'smooth',

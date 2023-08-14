@@ -4,23 +4,21 @@ import Button from '../atom-components/Button';
 
 interface ScrollButtonProps {
   pageButtonHandler: (pageNum: number) => void;
-  item: PageList;
   currentPageNum: number;
+  idx: number;
 }
 
 const ScrollButton = ({
   pageButtonHandler,
-  item,
+  idx,
   currentPageNum,
 }: ScrollButtonProps) => {
   return (
     <Button
-      onClick={() => pageButtonHandler(item.pageNum)}
+      onClick={() => pageButtonHandler(idx + 1)}
       className={cn(
         'rounded-full w-4 h-4',
-        matchCss(currentPageNum, item.pageNum)
-          ? 'bg-yellow-500'
-          : 'bg-gray-200',
+        matchCss(currentPageNum, idx + 1) ? 'bg-yellow-500' : 'bg-gray-200',
       )}
     ></Button>
   );

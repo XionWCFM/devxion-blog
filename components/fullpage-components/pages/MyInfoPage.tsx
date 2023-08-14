@@ -6,6 +6,7 @@ import HeadingParagraph from '@/components/atom-components/HeadingParagraph';
 import Centering from '@/components/atom-components/Centering';
 import Paragraph from '@/components/atom-components/Paragraph';
 import Between from '@/components/atom-components/Between';
+import useTyping from '@/hooks/useTyping';
 interface MyInfoPageProps {
   aboutme: Aboutme;
   channel: Channel;
@@ -19,18 +20,23 @@ const MyInfoPage = ({ aboutme, channel, contact }: MyInfoPageProps) => {
         <HeadingParagraph className=" mt-6 smooth">
           {aboutme.title}
         </HeadingParagraph>
-        {aboutme.descriptionArray.map((paragraph, i) => (
-          <Paragraph key={`aboutme${i}`}>{paragraph}</Paragraph>
-        ))}
+        <Centering col className=" my-6">
+          {aboutme.descriptionArray.map((paragraph, i) => (
+            <Paragraph
+              key={`aboutme${i}`}
+              className=" my-1 text-zinc-700 dark:text-zinc-100 lg:text-xl"
+            >
+              {paragraph}
+            </Paragraph>
+          ))}
+        </Centering>
       </Centering>
       <Between>
-        <Between.harfitem>안녕</Between.harfitem>
-        <Between.harfitem>안녕</Between.harfitem>
+        <Between.harfitem>{channel.title}</Between.harfitem>
+        <Between.harfitem>{contact.title}</Between.harfitem>
       </Between>
     </PageWrapper>
   );
 };
 
 export default MyInfoPage;
-
-const sentenceMaker = (word: string, ms_delay: number) => {};

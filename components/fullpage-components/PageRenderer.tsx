@@ -14,7 +14,7 @@ const PageRenderer = ({ fullpageResult }: PageRendererProps) => {
           <div
             key={idx}
             ref={(element) => {
-              pageRefList.current[item.pageNum] = element!;
+              pageRefList.current[idx + 1] = element!;
             }}
             className={`w-screen h-screen  ${item.background}`}
           >

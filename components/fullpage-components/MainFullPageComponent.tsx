@@ -9,17 +9,20 @@ import OtherExperiencePage from './pages/OtherExperiencePage';
 import PeerFeedbackPage from './pages/PeerFeedbackPage';
 import ProjectPage from './pages/ProjectPage';
 import { aboutme, channel, contact } from '@/datas/resume';
+import PortfolioMain from './pages/PortfolioMain';
 
 const pageObjArray: PageList[] = [
   {
-    pageNum: 1,
+    component: <PortfolioMain />,
+  },
+  {
     component: (
       <MyInfoPage channel={channel} aboutme={aboutme} contact={contact} />
     ),
   },
-  { pageNum: 2, component: <OtherExperiencePage /> },
-  { pageNum: 3, component: <PeerFeedbackPage /> },
-  { pageNum: 4, component: <ProjectPage /> },
+  { component: <OtherExperiencePage /> },
+  { component: <PeerFeedbackPage /> },
+  { component: <ProjectPage /> },
 ];
 
 const MainFullPageComponent = () => {

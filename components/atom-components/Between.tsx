@@ -21,7 +21,12 @@ const Between = ({ children, className }: BetweenProps) => {
 
 Between.harfitem = ({ children, className }: BetweenProps) => {
   return (
-    <div className={cn('flex justify-center items-center w-[50%] ', className)}>
+    <div
+      className={cn(
+        'flex justify-center items-center w-[100%] lg:w-[50%] ',
+        className,
+      )}
+    >
       {children}
     </div>
   );

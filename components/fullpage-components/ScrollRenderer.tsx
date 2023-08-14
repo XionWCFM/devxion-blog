@@ -17,7 +17,7 @@ const ScrollRenderer = ({ fullpageResult }: ScrollRendererProps) => {
           <ScrollButton
             key={`btn${idx}`}
             pageButtonHandler={pageButtonHandler}
-            item={item}
+            idx={idx}
             currentPageNum={currentPageNum}
           />
         ))}
