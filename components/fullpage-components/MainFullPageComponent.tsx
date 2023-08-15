@@ -1,54 +1,39 @@
 'use client';
-
-import useFullPage, { PageList } from '@/hooks/useFullPage';
-import ScrollButton from './ScrollButton';
-
-interface MainFullPageComponentProps {}
-
-const ComponentA = () => <div>안녕하세요</div>;
+import useFullPage from '@/hooks/useFullPage';
+import { PageList } from '@/types/fullpage';
+import PageRenderer from './PageRenderer';
+import { FullpageDTO } from '@/dto/FullpageDTO';
+import ScrollRenderer from './ScrollRenderer';
+import MyInfoPage from './pages/MyInfoPage';
+import OtherExperiencePage from './pages/OtherExperiencePage';
+import PeerFeedbackPage from './pages/PeerFeedbackPage';
+import ProjectPage from './pages/ProjectPage';
+import { aboutme, channel, contact } from '@/datas/resume';
+import PortfolioMain from './pages/PortfolioMain';
 
 const pageObjArray: PageList[] = [
-  { pageNum: 1, background: 'bg-[#ffeaa7]', component: ComponentA },
-  { pageNum: 2, background: 'bg-[#fab1a0]', component: ComponentA },
-  { pageNum: 3, background: 'bg-[#fdcb6e]', component: ComponentA },
-  { pageNum: 4, background: 'bg-[#e17055]', component: ComponentA },
+  {
+    component: <PortfolioMain />,
+  },
+  {
+    component: (
+      <MyInfoPage channel={channel} aboutme={aboutme} contact={contact} />
+    ),
+  },
+  { component: <OtherExperiencePage /> },
+  { component: <PeerFeedbackPage /> },
+  { component: <ProjectPage /> },
 ];
 
-const MainFullPageComponent = ({}: MainFullPageComponentProps) => {
-  const { pageRefList, pageButtonHandler, currentPageNum } =
-    useFullPage(pageObjArray);
+const MainFullPageComponent = () => {
+  const fullpageDTO = new FullpageDTO(pageObjArray);
+  const fullpageResult = useFullPage(fullpageDTO);
 
   return (
-    <div>
-      {pageObjArray.map((item, idx) => {
-        return (
-          <div
-            key={idx}
-            ref={(element) => {
-              pageRefList.current[item.pageNum] = element!;
-            }}
-            className={`w-screen h-screen  ${item.background}`}
-          >
-            <div className=" h-full w-full justify-center items-center flex">
-              <item.component />
-              <span>{item.pageNum}</span>
-            </div>
-          </div>
-        );
-      })}
-      <div className=" fixed top-1/2 right-10 smooth">
-        <div className=" flex flex-col gap-2">
-          {pageObjArray.map((item, idx) => (
-            <ScrollButton
-              key={`btn${idx}`}
-              pageButtonHandler={pageButtonHandler}
-              item={item}
-              currentPageNum={currentPageNum}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+    <>
+      <PageRenderer fullpageResult={fullpageResult} />
+      <ScrollRenderer fullpageResult={fullpageResult} />
+    </>
   );
 };
 

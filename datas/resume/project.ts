@@ -1,3 +1,5 @@
+import { Project } from '@/types/resume';
+
 const plip = {
   subject: 'PliP',
   startDate: '2023-06-29',
@@ -44,7 +46,7 @@ const plip = {
     '랜딩 페이지 초기 로딩 개선 (4s -> 2s)',
     '불필요한 API 호출 최소화(기존 대비 60% 감소)',
   ],
-  asset: [],
+  asset: ['../asset/plip/plip1.webp', '../asset/plip/plip2.webp'],
 };
 
 const devxionBlog = {
@@ -73,10 +75,10 @@ const devxionBlog = {
     'scroll event Throttling 적용',
     'Barrel Export 패턴 적용',
   ],
-  asset: [],
+  asset: ['../asset/retrospect/retrospect.webp'],
 };
 
-export const project = {
+export const project: Project = {
   type: 'project',
   title: 'Project',
   itemList: [plip, devxionBlog],

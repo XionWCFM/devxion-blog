@@ -1,4 +1,6 @@
-export const otherExperience = {
+import { OtherExperience } from '@/types/resume';
+
+export const otherExperience: OtherExperience = {
   title: 'OtherExperience',
   type: 'otherExperience',
 

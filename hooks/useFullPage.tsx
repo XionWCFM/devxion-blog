@@ -1,16 +1,11 @@
 import React from 'react';
 import useThrottle from './useThrottle';
+import { FullpageDTO } from '@/dto/FullpageDTO';
 
-export interface PageList<T = any> {
-  pageNum: number;
-  background: string;
-  component: (arg: T) => React.JSX.Element;
-}
-
-const useFullPage = (pageList: PageList[]) => {
+const useFullPage = (fullpageDTO: FullpageDTO) => {
   const [windowObj, setWindowObj] = React.useState<Window>();
   const [currentPageNum, setCurrentPageNum] = React.useState(1);
-  const totalPageLen = pageList.length;
+  const totalPageLen = fullpageDTO.pageList.length;
   const pageRefList = React.useRef<HTMLDivElement[]>([]);
   const [timestamp, setTimestamp] = React.useState(0);
 
@@ -18,7 +13,6 @@ const useFullPage = (pageList: PageList[]) => {
     React.useCallback(
       (event: Event) => {
         let scroll = windowObj?.scrollY!;
-        console.log('왜 실행됨?');
         for (let i = 1; i <= totalPageLen; i++) {
           if (
             scroll >
@@ -39,6 +33,7 @@ const useFullPage = (pageList: PageList[]) => {
   );
 
   const pageButtonHandler = (pageNum: number) => {
+    console.log(pageNum);
     windowObj?.scrollTo({
       top: pageRefList.current[pageNum].offsetTop,
       behavior: 'smooth',
@@ -92,7 +87,9 @@ const useFullPage = (pageList: PageList[]) => {
     pageButtonHandler,
     currentPageNum,
     pageRefList,
+    fullpageDTO,
   };
 };
 
+export type FullPageReturnType = ReturnType<typeof useFullPage>;
 export default useFullPage;

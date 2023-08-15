@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { cn } from '@/utils';
 import type { MDXComponents } from 'mdx/types';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import Image from 'next/image';
 import * as React from 'react';
 
 const components: MDXComponents = {
@@ -73,8 +73,8 @@ const components: MDXComponents = {
     />
   ),
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      className={cn('leading-8 [&:not(:first-child)]:mt-2', className)}
+    <span
+      className={cn('leading-8 [&:not(:first-child)]:mt-2 block', className)}
       {...props}
     />
   ),
@@ -99,20 +99,17 @@ const components: MDXComponents = {
       {...props}
     />
   ),
-  img: ({
-    className,
-    alt,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  img: ({ className, alt, src }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <div className=" overflow-hidden w-[300px] md:w-[500px] lg:w-[850px] lg:h-auto mb-2 mx-auto">
-      <img
+      <Image
+        src={src as string}
+        alt={alt as string}
+        width={800}
+        height={800}
         className={cn(
           'rounded-md border hover:scale-110 transition-transform ease-in-out duration-500',
           className,
         )}
-        alt={alt}
-        sizes="(max-width: 480px) 300px, (max-width: 768px ) 500px, 850px"
-        {...props}
       />
     </div>
   ),
@@ -174,8 +171,8 @@ export default function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="mdx">
+    <>
       <Component components={components} />
-    </div>
+    </>
   );
 }

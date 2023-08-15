@@ -1,0 +1,50 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { MutableRefObject } from 'react';
+
+interface UseIntersectionObserver {
+  root?: MutableRefObject<Element | null> | null;
+  target: MutableRefObject<Element | null>;
+  onIntersect: Function;
+  threshold?: number;
+  rootMargin?: string;
+  enabled?: unknown;
+}
+const useIntersectionObserver = ({
+  root = null,
+  target,
+  onIntersect,
+  threshold = 1.0,
+  rootMargin = '0px',
+  enabled = true,
+}: UseIntersectionObserver) => {
+  const memoizedOnIntersect = React.useCallback(onIntersect, []);
+  React.useEffect(() => {
+    if (!enabled) return;
+
+    let observer: IntersectionObserver;
+    const domElement = target && target.current;
+
+    if (domElement) {
+      observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              onIntersect();
+            }
+          }),
+        {
+          threshold,
+          rootMargin,
+          root: root && root.current,
+        },
+      );
+      observer.observe(domElement);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [enabled, root, memoizedOnIntersect, rootMargin, target, threshold]);
+};
+
+export default useIntersectionObserver;

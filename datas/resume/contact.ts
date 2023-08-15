@@ -1,4 +1,6 @@
-export const contact = {
+import { Contact } from '@/types/resume';
+
+export const contact: Contact = {
   title: 'Contact',
   type: 'contact',
   itemList: [

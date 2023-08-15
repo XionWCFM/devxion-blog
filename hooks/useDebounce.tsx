@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-function useDebounce<T extends any[]>(
+function useDebounce<T extends unknown[]>(
   callback: (...params: T) => void,
   time: number,
 ) {

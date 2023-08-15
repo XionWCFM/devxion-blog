@@ -1,4 +1,6 @@
-export const peerFeedback = {
+import { PeerFeedback } from '@/types/resume';
+
+export const peerFeedback: PeerFeedback = {
   title: '팀원 평가',
   type: 'peerFeedback',
 
