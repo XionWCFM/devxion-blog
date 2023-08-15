@@ -1,49 +1,61 @@
 'use client';
 import React from 'react';
 
-const useTyping = (sentence: string, ms_delay = 200) => {
+const useTyping = (sentence: string, ms_delay = 100) => {
   const [word, setWord] = React.useState('');
   const targetRef = React.useRef<
     HTMLDivElement | HTMLParagraphElement | HTMLHeadingElement
   >(null);
-  const currentIndex = React.useRef(0);
-
-  const handleScroll: IntersectionObserverCallback = React.useCallback(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        currentIndex.current = 0;
-        setWord('');
-      }
-    },
-    [],
-  );
-
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const lastTimestamp = React.useRef<number | null>(null);
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (sentence.length > currentIndex.current) {
-        setWord((state) => {
-          const newState = (state += sentence[currentIndex.current]);
-          currentIndex.current += 1;
-          return newState;
-        });
+    let animationFrameId: number;
+    const animateTyping = (timestamp: number) => {
+      if (lastTimestamp.current === null) lastTimestamp.current = timestamp;
+      const elapsed = timestamp - lastTimestamp.current;
+      if (elapsed > ms_delay) {
+        lastTimestamp.current = timestamp;
+        if (sentence.length > currentIndex) {
+          setWord((state) => {
+            const newState = (state += sentence[currentIndex]);
+            setCurrentIndex((prevIndex) => prevIndex + 1);
+            return newState;
+          });
+        }
       }
-    }, ms_delay);
+      animationFrameId = requestAnimationFrame(animateTyping);
+    };
+    animationFrameId = requestAnimationFrame(animateTyping);
 
     return () => {
-      clearTimeout(interval);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [ms_delay, sentence]);
+  }, [currentIndex, ms_delay, sentence]);
 
   React.useEffect(() => {
     let observer: IntersectionObserver;
     const { current } = targetRef;
+
     if (current) {
-      observer = new IntersectionObserver(handleScroll, { threshold: 0.7 });
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setCurrentIndex(0);
+            setWord('');
+          }
+        },
+        { threshold: 0.5 },
+      ); // threshold 값을 조정
       observer.observe(current);
     }
 
-    return () => observer && observer.disconnect();
-  }, [handleScroll]);
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   return { word, targetRef, setWord };
 };
 
