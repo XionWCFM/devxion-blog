@@ -6,7 +6,9 @@ import Centering from '@/components/atom-components/Centering';
 interface PortfolioMainProps {}
 
 const PortfolioMain = ({}: PortfolioMainProps) => {
-  const { word, targetRef } = useTyping('fdsfdsfdsads');
+  const sentence = '안녕하세요! 더 좋은 방향을 고민하는 개발자 유길종입니다.';
+
+  const { word, targetRef } = useTyping(sentence);
   return (
     <PageWrapper>
       <Centering col className=" justify-center items-center">
