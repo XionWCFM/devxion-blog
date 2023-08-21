@@ -5,6 +5,7 @@ interface UseIntersectionObserver {
   root?: MutableRefObject<Element | null> | null;
   target: MutableRefObject<Element | null>;
   onIntersect: Function;
+  offIntersect?: Function;
   threshold?: number;
   rootMargin?: string;
   enabled?: unknown;
@@ -13,6 +14,7 @@ const useIntersectionObserver = ({
   root = null,
   target,
   onIntersect,
+  offIntersect = () => {},
   threshold = 1.0,
   rootMargin = '0px',
   enabled = true,
@@ -28,6 +30,10 @@ const useIntersectionObserver = ({
       observer = new IntersectionObserver(
         (entries) =>
           entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              offIntersect();
+            }
+
             if (entry.isIntersecting) {
               onIntersect();
             }

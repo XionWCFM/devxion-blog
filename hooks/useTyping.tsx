@@ -19,16 +19,20 @@ const useTyping = (sentence: string, ms_delay = 100) => {
       });
     }
   };
-  
-  const intersectHandler = () => {
+
+  const onIntersectHandler = () => {
     setCurrentIndex(0);
+  };
+
+  const offIntersectHandler = () => {
     setWord('');
   };
 
   useRequestAnimationFrame(animateTyping, ms_delay);
 
   useIntersectionObserver({
-    onIntersect: intersectHandler,
+    onIntersect: onIntersectHandler,
+    offIntersect: offIntersectHandler,
     target: targetRef,
   });
 

@@ -43,9 +43,8 @@ const useFullPage = (fullpageDTO: FullpageDTO) => {
   const wheelHandler = React.useCallback(
     (event: WheelEvent) => {
       event.preventDefault();
-
-      if (1000 > event.timeStamp - timestamp) return;
-
+      if (1500 > event.timeStamp - timestamp) return;
+      console.log(event.timeStamp - timestamp);
       if (event.deltaY < 0 && currentPageNum > 1) {
         windowObj?.scrollTo({
           top: pageRefList.current[currentPageNum - 1].offsetTop,
