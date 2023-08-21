@@ -22,6 +22,7 @@ const useTyping = (sentence: string, ms_delay = 100) => {
 
   const onIntersectHandler = () => {
     setCurrentIndex(0);
+    setWord('');
   };
 
   const offIntersectHandler = () => {
