@@ -1,19 +1,18 @@
 'use client';
 import React from 'react';
 import PageWrapper from '../PageWrapper';
-import { Aboutme, Channel, Contact } from '@/types/resume';
+import { Aboutme, Article, Channel, Contact } from '@/types/resume';
 import HeadingParagraph from '@/components/atom-components/HeadingParagraph';
 import Centering from '@/components/atom-components/Centering';
 import Paragraph from '@/components/atom-components/Paragraph';
 import Between from '@/components/atom-components/Between';
-import useTyping from '@/hooks/useTyping';
 interface MyInfoPageProps {
   aboutme: Aboutme;
-  channel: Channel;
-  contact: Contact;
+
+  article: Article;
 }
 
-const MyInfoPage = ({ aboutme, channel, contact }: MyInfoPageProps) => {
+const MyInfoPage = ({ aboutme, article }: MyInfoPageProps) => {
   return (
     <PageWrapper>
       <Centering col>
@@ -31,10 +30,6 @@ const MyInfoPage = ({ aboutme, channel, contact }: MyInfoPageProps) => {
           ))}
         </Centering>
       </Centering>
-      <Between>
-        <Between.harfitem>{channel.title}</Between.harfitem>
-        <Between.harfitem>{contact.title}</Between.harfitem>
-      </Between>
     </PageWrapper>
   );
 };

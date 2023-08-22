@@ -10,15 +10,13 @@ import PeerFeedbackPage from './pages/PeerFeedbackPage';
 import ProjectPage from './pages/ProjectPage';
 import { aboutme, channel, contact } from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
-
+import { article } from '@/datas/resume';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
   },
   {
-    component: (
-      <MyInfoPage channel={channel} aboutme={aboutme} contact={contact} />
-    ),
+    component: <MyInfoPage aboutme={aboutme} article={article} />,
   },
   { component: <OtherExperiencePage /> },
   { component: <PeerFeedbackPage /> },

@@ -17,6 +17,7 @@ const MoveTop = ({}: MoveTopProps) => {
         className="   rounded-full p-5 bg-yellow-500 dark:bg-yellow-500"
       >
         <Image
+          priority
           src={Icons.topDirectionIcon.src}
           alt={Icons.topDirectionIcon.alt}
           width={20}

@@ -17,6 +17,7 @@ const DarkModeToggleBtn = ({}: DarkModeToggleBtnProps) => {
     <Button>
       {mounted && theme === 'dark' ? (
         <Image
+          priority
           src={Icons.SunIcon.src}
           alt={Icons.SunIcon.alt}
           width={Icons.SunIcon.width}
@@ -25,6 +26,7 @@ const DarkModeToggleBtn = ({}: DarkModeToggleBtnProps) => {
         />
       ) : (
         <Image
+          priority
           src={Icons.MoonIcon.src}
           alt={Icons.MoonIcon.alt}
           width={Icons.MoonIcon.width}
