@@ -10,7 +10,7 @@ interface PortfolioMainProps {}
 
 const PortfolioMain = ({}: PortfolioMainProps) => {
   const sentence =
-    '안녕하세요. \n 저는 프론트엔드 개발자 유길종입니다. \n 제 장점은 끊임없는 탐구심과 호기심 입니다. \n ';
+    '안녕하세요. \n 저는 프론트엔드 개발자 유길종입니다. \n 제 장점은 항상 왜?를 먼저 생각하는 습관 입니다. \n ';
   const portfolio = useTyping(sentence);
   const [isOpen, setIsOpen] = React.useState(false);
   const handleMouseEnter = () => {

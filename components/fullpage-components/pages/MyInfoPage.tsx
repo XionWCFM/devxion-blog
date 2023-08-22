@@ -6,6 +6,7 @@ import HeadingParagraph from '@/components/atom-components/HeadingParagraph';
 import Centering from '@/components/atom-components/Centering';
 import Paragraph from '@/components/atom-components/Paragraph';
 import Between from '@/components/atom-components/Between';
+import { lineBreak } from '@/utils';
 interface MyInfoPageProps {
   aboutme: Aboutme;
 
@@ -28,6 +29,22 @@ const MyInfoPage = ({ aboutme, article }: MyInfoPageProps) => {
               {paragraph}
             </Paragraph>
           ))}
+
+          <div className=" flex justify-center items-center flex-col gap-4 md:gap-8 mt-8">
+            {aboutme.itemList.map((item, idx) => (
+              <div
+                key={`aboutme${idx}`}
+                className=" flex flex-col justify-center items-center"
+              >
+                <HeadingParagraph size={'xs'}>{item.subject}</HeadingParagraph>
+                <div className=" flex items-center flex-col gap-2">
+                  {lineBreak(item.content).map((sentence, idx) => (
+                    <Paragraph key={`line${idx}`}>{sentence}</Paragraph>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </Centering>
       </Centering>
     </PageWrapper>
