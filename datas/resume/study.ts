@@ -47,6 +47,69 @@ const nextjsdocs = {
   ],
 };
 
+const effectiveTypescriptStudy = {
+  subject: 'effective-typescript-study',
+  url: 'https://github.com/XionWCFM/effective-typescript-study',
+  highlightDescription: [
+    [
+      {
+        highlight: true,
+        sentence: '이펙티브 타입스크립트',
+      },
+      {
+        highlight: false,
+        sentence: '를 읽고 느낀점을 공유하는 스터디입니다.',
+      },
+    ],
+    [
+      {
+        highlight: false,
+        sentence: '스터디를 진행하면서',
+      },
+      {
+        highlight: true,
+        sentence: '상표 표기법, private 키워드와 #키워드의 차이',
+      },
+      {
+        highlight: false,
+        sentence: '등 타입스크립트를 좀 더 깊이 알 수 있었습니다.',
+      },
+    ],
+  ],
+};
+
+const reactStudy = {
+  subject: 'react-study',
+  url: 'https://github.com/XionWCFM/react-article-study',
+  highlightDescription: [
+    [
+      {
+        highlight: true,
+        sentence: 'react-study',
+      },
+      {
+        highlight: false,
+        sentence:
+          '는 각자 리액트의 모르는 부분을 공부하고 발표하는 스터디입니다.',
+      },
+    ],
+    [
+      {
+        highlight: false,
+        sentence: '스터디를 진행하면서',
+      },
+      {
+        highlight: true,
+        sentence: 'servercomponent, concurrency render',
+      },
+      {
+        highlight: false,
+        sentence: '등 react 18 version의 기능들에 대한 이해를 얻었습니다.',
+      },
+    ],
+  ],
+};
+
 export const study: Study = {
   title: 'Study',
   type: 'study',
@@ -76,5 +139,5 @@ export const study: Study = {
       },
     ],
   ],
-  itemList: [nextjsdocs],
+  itemList: [nextjsdocs, effectiveTypescriptStudy, reactStudy],
 };

@@ -3,7 +3,8 @@ import { Article } from '@/types/resume';
 export const article: Article = {
   title: 'Article',
   type: 'article',
-  description: '제 기술 블로그에서 평가가 좋았던 Article을 모았습니다.',
+  description:
+    '앞서 언급한 기술블로그에서 평가가 좋았던 Article을 모았습니다. \n 각 아티클을 클릭하면 해당 링크에 대한 새창이 열립니다.',
   itemList: [
     {
       subject:
