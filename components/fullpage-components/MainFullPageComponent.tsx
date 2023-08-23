@@ -12,12 +12,14 @@ import { aboutme, channel, contact, project } from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
 import { article } from '@/datas/resume';
 import ArticlePage from './pages/ArticlePage';
+import React from 'react';
+import useScrollToTop from '@/hooks/useScrollToTop';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
   },
   {
-    component: <MyInfoPage aboutme={aboutme} article={article} />,
+    component: <MyInfoPage aboutme={aboutme} />,
   },
   { component: <ArticlePage article={article} /> },
   { component: <ProjectPage project={project} /> },
@@ -28,7 +30,7 @@ const pageObjArray: PageList[] = [
 const MainFullPageComponent = () => {
   const fullpageDTO = new FullpageDTO(pageObjArray);
   const fullpageResult = useFullPage(fullpageDTO);
-
+  useScrollToTop();
   return (
     <>
       <PageRenderer fullpageResult={fullpageResult} />
