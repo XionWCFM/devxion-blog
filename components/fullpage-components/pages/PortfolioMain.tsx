@@ -5,6 +5,7 @@ import PageWrapper from '../PageWrapper';
 import Centering from '@/components/atom-components/Centering';
 import * as Popover from '@radix-ui/react-popover';
 import { lineBreak } from '@/utils';
+import Paragraph from '@/components/atom-components/Paragraph';
 
 interface PortfolioMainProps {}
 
@@ -27,7 +28,9 @@ const PortfolioMain = ({}: PortfolioMainProps) => {
         className=" font-extrabold text-xl mb-[10vh] text-zinc-600 dark:text-zinc-200 justify-center items-center flex flex-col gap-y-5"
       >
         {lineBreak(portfolio.word).map((item, i) => (
-          <p key={`sentence${i}`}>{item}</p>
+          <p className="text-xs md:text-lg " key={`sentence${i}`}>
+            {item}
+          </p>
         ))}
       </div>
       <div className=" absolute bottom-10">
