@@ -9,7 +9,6 @@ interface PostCardProps {
 
 const CardList = ({ docArray }: PostCardProps) => {
   const documentSortedArray = getSortedPosts(docArray);
-  console.log(documentSortedArray);
   return (
     <div className="smooth">
       <div className=" grid grid-cols-1 lg:grid-cols-2">

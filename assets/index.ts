@@ -4,6 +4,7 @@ import Insta from '@/public/icons/insta.svg';
 import Moon from '@/public/icons/moon.svg';
 import Search from '@/public/icons/search.svg';
 import Sun from '@/public/icons/sun.svg';
+import TopDirection from '@/public/icons/topDirection.svg';
 
 interface IconType {
   src: typeof FaceBook;
@@ -49,6 +50,12 @@ const SearchIcon: IconType = {
   ...size,
 };
 
+const topDirectionIcon: IconType = {
+  src: TopDirection,
+  alt: 'topDirection',
+  ...size,
+};
+
 export const Icons = {
   FaceBookIcon,
   InstaIcon,
@@ -56,4 +63,5 @@ export const Icons = {
   SunIcon,
   SearchIcon,
   GitHubIcon,
+  topDirectionIcon,
 };

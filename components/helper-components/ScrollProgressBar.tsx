@@ -38,7 +38,7 @@ const ScrollProgressBar = ({}: ScrollProgressBarProps) => {
       ref={progressRef}
     >
       <div
-        className=" h-full bg-orange-500"
+        className=" h-full bg-yellow-500"
         style={{ width: width + '%' }}
       ></div>
     </div>

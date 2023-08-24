@@ -8,27 +8,29 @@ import MyInfoPage from './pages/MyInfoPage';
 import OtherExperiencePage from './pages/OtherExperiencePage';
 import PeerFeedbackPage from './pages/PeerFeedbackPage';
 import ProjectPage from './pages/ProjectPage';
-import { aboutme, channel, contact } from '@/datas/resume';
+import { aboutme, channel, contact, project } from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
-
+import { article } from '@/datas/resume';
+import ArticlePage from './pages/ArticlePage';
+import React from 'react';
+import useScrollToTop from '@/hooks/useScrollToTop';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
   },
   {
-    component: (
-      <MyInfoPage channel={channel} aboutme={aboutme} contact={contact} />
-    ),
+    component: <MyInfoPage aboutme={aboutme} />,
   },
+  { component: <ArticlePage article={article} /> },
+  { component: <ProjectPage project={project} /> },
   { component: <OtherExperiencePage /> },
   { component: <PeerFeedbackPage /> },
-  { component: <ProjectPage /> },
 ];
 
 const MainFullPageComponent = () => {
   const fullpageDTO = new FullpageDTO(pageObjArray);
   const fullpageResult = useFullPage(fullpageDTO);
-
+  useScrollToTop();
   return (
     <>
       <PageRenderer fullpageResult={fullpageResult} />

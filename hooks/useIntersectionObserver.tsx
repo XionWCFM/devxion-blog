@@ -15,7 +15,7 @@ const useIntersectionObserver = ({
   target,
   onIntersect,
   offIntersect = () => {},
-  threshold = 1.0,
+  threshold = 0.5,
   rootMargin = '0px',
   enabled = true,
 }: UseIntersectionObserver) => {

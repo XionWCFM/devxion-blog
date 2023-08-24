@@ -39,14 +39,13 @@ const plip = {
     'tailwind-css',
   ],
   role: [
-    'Atomic Design System 적용',
-    'tailwind-css 클래스 우선순위 문제 해결',
-    '로그인 회원가입 구현 및 토큰 관리',
+    'Provider 패턴 도입을 통한 토큰 핸들링 구현',
     'fetch로 작성된 코드 axios로 리팩토링',
-    '랜딩 페이지 초기 로딩 개선 (4s -> 2s)',
-    '불필요한 API 호출 최소화(기존 대비 60% 감소)',
+    'Atomic Design System 적용',
+    'Suspense , Error Boundary 도입을 통한 로직 분리',
+    'code spliting 및 lazy loading 적용',
   ],
-  asset: ['../asset/plip/plip1.webp', '../asset/plip/plip2.webp'],
+  asset: ['@/asset/plip/plip1.webp', '@/asset/plip/plip2.webp'],
 };
 
 const devxionBlog = {
@@ -57,7 +56,7 @@ const devxionBlog = {
     isTeam: false,
     significant: '개인 프로젝트',
   },
-  description: 'next.js의 app router를 이용한 블로그입니다.',
+  description: 'next.js의 app router를 이용해 구축한 블로그입니다.',
   urlList: [
     {
       type: 'deploy',
@@ -70,12 +69,13 @@ const devxionBlog = {
   ],
   techStack: ['typescript', 'nextjs', 'tailwind-css'],
   role: [
-    'WheelEvent 와 TimeStamp를 활용하여 FullPage 기능 구현',
+    'requestAnimationFrame과 TimeStamp를 활용한 typing 애니메이션 구현',
+    'intersectionObserver를 이용하여 typing reset 기능 구현',
     'font layoutshift 최적화',
-    'scroll event Throttling 적용',
+    'throttling을 통한 event 최적화',
     'Barrel Export 패턴 적용',
   ],
-  asset: ['../asset/retrospect/retrospect.webp'],
+  asset: ['@/asset/retrospect/retrospect.webp'],
 };
 
 export const project: Project = {

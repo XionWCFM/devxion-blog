@@ -1,6 +1,7 @@
 import React from 'react';
 import useThrottle from './useThrottle';
 import { FullpageDTO } from '@/dto/FullpageDTO';
+import { isNegative, isPositive, scrollTo } from '@/utils';
 
 const useFullPage = (fullpageDTO: FullpageDTO) => {
   const [windowObj, setWindowObj] = React.useState<Window>();
@@ -10,54 +11,53 @@ const useFullPage = (fullpageDTO: FullpageDTO) => {
   const [timestamp, setTimestamp] = React.useState(0);
 
   const currentPageChange = useThrottle(
-    React.useCallback(
-      (event: Event) => {
-        let scroll = windowObj?.scrollY!;
-        for (let i = 1; i <= totalPageLen; i++) {
-          if (
-            scroll >
-              pageRefList.current[i].offsetTop - windowObj!.outerHeight / 3 &&
-            scroll <
-              pageRefList.current[i].offsetTop -
-                windowObj!.outerHeight / 3 +
-                pageRefList.current[i].offsetHeight
-          ) {
-            setCurrentPageNum(i);
-            break;
-          }
+    React.useCallback(() => {
+      let scroll = windowObj?.scrollY!;
+      for (let i = 1; i <= totalPageLen; i++) {
+        const isScrollPositive =
+          scroll >
+          pageRefList.current[i].offsetTop - windowObj!.outerHeight / 3;
+        const isScrollNegative =
+          scroll <
+          pageRefList.current[i].offsetTop -
+            windowObj!.outerHeight / 3 +
+            pageRefList.current[i].offsetHeight;
+
+        if (isScrollPositive && isScrollNegative) {
+          setCurrentPageNum(i);
+          break;
         }
-      },
-      [totalPageLen, windowObj],
-    ),
+      }
+    }, [totalPageLen, windowObj]),
     500,
   );
 
   const pageButtonHandler = (pageNum: number) => {
-    console.log(pageNum);
-    windowObj?.scrollTo({
-      top: pageRefList.current[pageNum].offsetTop,
-      behavior: 'smooth',
-    });
+    const offsetTop = pageRefList.current[pageNum].offsetTop;
+    scrollTo(windowObj,offsetTop)
   };
 
   const wheelHandler = React.useCallback(
     (event: WheelEvent) => {
       event.preventDefault();
-      if (1500 > event.timeStamp - timestamp) return;
-      console.log(event.timeStamp - timestamp);
-      if (event.deltaY < 0 && currentPageNum > 1) {
-        windowObj?.scrollTo({
-          top: pageRefList.current[currentPageNum - 1].offsetTop,
-          behavior: 'smooth',
-        });
+
+      const should_return = 1500 > event.timeStamp - timestamp;
+      const isDeltaYNegative = isNegative(event.deltaY);
+      const isValidPageNum = isPositive(currentPageNum);
+      const downScrolling = pageRefList.current[currentPageNum - 1]?.offsetTop;
+      const upScrolling = pageRefList.current[currentPageNum + 1]?.offsetTop;
+      const isNotLastPage = currentPageNum < totalPageLen;
+      const isDeltaYPositive = isPositive(event.deltaY);
+
+      if (should_return) return;
+
+      if (isDeltaYNegative && isValidPageNum) {
+        scrollTo(windowObj, downScrolling);
         setTimestamp(event.timeStamp);
       }
 
-      if (event.deltaY > 0 && currentPageNum < totalPageLen) {
-        windowObj?.scrollTo({
-          top: pageRefList.current[currentPageNum + 1].offsetTop,
-          behavior: 'smooth',
-        });
+      if (isDeltaYPositive && isNotLastPage) {
+        scrollTo(windowObj, upScrolling);
         setTimestamp(event.timeStamp);
       }
     },

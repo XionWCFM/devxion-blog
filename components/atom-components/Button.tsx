@@ -45,7 +45,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={`${cn(ButtonVariants({ variant, size }))} ${className}`}
+      className={cn(ButtonVariants({ size, variant }), className)}
       {...props}
     >
       {children}

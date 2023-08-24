@@ -1,4 +1,4 @@
-type HighlightParagraph = { highlight: boolean; sentence: string }[][];
+export type HighlightParagraph = { highlight: boolean; sentence: string }[][];
 
 interface HighlightDescription {
   highlightDescription: HighlightParagraph;
