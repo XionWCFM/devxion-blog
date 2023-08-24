@@ -13,11 +13,6 @@ export const article: Article = {
       url: 'https://xionwcfm.tistory.com/183',
     },
     {
-      subject: 'v8 엔진으로의 DeepDive',
-      createdAt: '2023-02-27',
-      url: 'https://xionwcfm.tistory.com/186',
-    },
-    {
       subject: '자바스크립트의 호이스팅에 Deep Dive 해보자',
       createdAt: '2023-04-11',
       url: 'https://xionwcfm.tistory.com/245',
@@ -36,16 +31,6 @@ export const article: Article = {
       subject: 'next.js에서 react-query가 필요할까?',
       createdAt: '2023-06-08',
       url: 'https://xionwcfm.tistory.com/339',
-    },
-    {
-      subject: '이터러블과 이터레이터 이해하는 방법',
-      createdAt: '2023-03-06',
-      url: 'https://xionwcfm.tistory.com/198',
-    },
-    {
-      subject: '왜 emotion 같은 css-in-js 프레임워크들은 ssr이 힘든걸까?',
-      createdAt: '2023-05-26',
-      url: 'https://xionwcfm.tistory.com/329',
     },
   ],
 };

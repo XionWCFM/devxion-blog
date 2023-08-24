@@ -17,7 +17,7 @@ const PageRenderer = ({ fullpageResult }: PageRendererProps) => {
             ref={(element) => {
               pageRefList.current[idx + 1] = element!;
             }}
-            className={ cn(`w-screen h-screen`, item.background) }
+            className={cn(`w-screen h-screen max-h-screen`, item.background)}
           >
             <div className=" h-full w-full justify-center items-end flex">
               {item.component}

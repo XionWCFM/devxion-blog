@@ -29,7 +29,7 @@ const MyInfoPage = ({ aboutme }: MyInfoPageProps) => {
               </Paragraph>
             ))}
 
-            <div className=" flex justify-center items-center flex-col gap-4 md:gap-8 mt-8">
+            <div className=" flex justify-center items-center flex-col flex-wrap  gap-4 md:gap-8 mt-8">
               {aboutme.itemList.map((item, idx) => (
                 <div
                   key={`aboutme${idx}`}

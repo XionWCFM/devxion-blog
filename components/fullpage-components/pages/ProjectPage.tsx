@@ -27,6 +27,8 @@ const ProjectPage = ({ project }: ProjectPageProps) => {
             <div className="">{item.description}</div>
           </div>
         ))} */}
+
+        <div>dsa</div>
         <Swiper navigation={true} modules={[Navigation]} className=" w-[70vw]">
           {project.itemList.map((item, idx) => (
             <SwiperSlide
