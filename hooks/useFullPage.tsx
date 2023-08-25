@@ -3,7 +3,15 @@ import useThrottle from './useThrottle';
 import { FullpageDTO } from '@/dto/FullpageDTO';
 import { isNegative, isPositive, scrollTo } from '@/utils';
 
-const useFullPage = (fullpageDTO: FullpageDTO) => {
+interface Option {
+  scrollLock?: boolean;
+}
+
+const optionObj: Option = {
+  scrollLock: false,
+};
+
+const useFullPage = (fullpageDTO: FullpageDTO, option = optionObj) => {
   const [windowObj, setWindowObj] = React.useState<Window>();
   const [currentPageNum, setCurrentPageNum] = React.useState(1);
   const totalPageLen = fullpageDTO.pageList.length;
@@ -34,7 +42,7 @@ const useFullPage = (fullpageDTO: FullpageDTO) => {
 
   const pageButtonHandler = (pageNum: number) => {
     const offsetTop = pageRefList.current[pageNum].offsetTop;
-    scrollTo(windowObj,offsetTop)
+    scrollTo(windowObj, offsetTop);
   };
 
   const wheelHandler = React.useCallback(
@@ -76,11 +84,16 @@ const useFullPage = (fullpageDTO: FullpageDTO) => {
   }, [currentPageChange, windowObj]);
 
   React.useEffect(() => {
-    windowObj?.addEventListener('wheel', wheelHandler, { passive: false });
+    if (option.scrollLock) {
+      windowObj?.addEventListener('wheel', wheelHandler, { passive: false });
+    }
+
     return () => {
-      windowObj?.removeEventListener('wheel', wheelHandler);
+      if (option.scrollLock) {
+        windowObj?.removeEventListener('wheel', wheelHandler);
+      }
     };
-  }, [wheelHandler, windowObj]);
+  }, [option.scrollLock, wheelHandler, windowObj]);
 
   return {
     pageButtonHandler,

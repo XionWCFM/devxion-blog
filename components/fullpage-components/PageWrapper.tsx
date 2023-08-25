@@ -11,7 +11,7 @@ const PageWrapper = ({ children, centering, className }: PageWrapperProps) => {
   return (
     <section
       className={cn(
-        'w-[70%] h-[80%] ',
+        'w-[70%] h-[80%] my-20',
         centering ? ' flex justify-center items-center' : '',
         className,
       )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FullPageReturnType } from '@/hooks/useFullPage';
-import { cn } from '@/utils';
+import { cn, isZero } from '@/utils';
 
 interface PageRendererProps {
   fullpageResult: FullPageReturnType;
@@ -17,7 +17,10 @@ const PageRenderer = ({ fullpageResult }: PageRendererProps) => {
             ref={(element) => {
               pageRefList.current[idx + 1] = element!;
             }}
-            className={cn(`w-screen h-screen max-h-screen`, item.background)}
+            className={cn(
+              isZero(idx) ? 'w-screen h-screen' : '',
+              item.background,
+            )}
           >
             <div className=" h-full w-full justify-center items-end flex">
               {item.component}

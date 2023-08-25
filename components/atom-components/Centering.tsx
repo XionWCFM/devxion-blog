@@ -4,15 +4,15 @@ import React from 'react';
 interface CenteringProps {
   children: React.ReactNode;
   className?: string;
-  col?: boolean;
+  row?: boolean;
 }
 
-const Centering = ({ children, className, col }: CenteringProps) => {
+const Centering = ({ children, className, row }: CenteringProps) => {
   return (
     <div
       className={cn(
-        'flex justify-center items-center',
-        col ? 'flex-col' : '',
+        'flex justify-center items-center flex-col flex-wrap',
+        row ? 'flex-row' : '',
         className,
       )}
     >

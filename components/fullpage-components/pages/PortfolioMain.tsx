@@ -6,6 +6,7 @@ import Centering from '@/components/atom-components/Centering';
 import * as Popover from '@radix-ui/react-popover';
 import { lineBreak } from '@/utils';
 import Paragraph from '@/components/atom-components/Paragraph';
+import LineBreakParagraph from '@/components/helper-components/LineBreakParagraph';
 
 interface PortfolioMainProps {}
 
@@ -25,10 +26,13 @@ const PortfolioMain = ({}: PortfolioMainProps) => {
     <PageWrapper centering>
       <div
         ref={portfolio.targetRef}
-        className=" font-extrabold text-xl mb-[10vh] text-zinc-600 dark:text-zinc-200 justify-center items-center flex flex-col gap-y-5"
+        className=" font-extrabold text-xl mb-[10vh] text-zinc-600 dark:text-zinc-200 flex flex-col gap-y-5"
       >
         {lineBreak(portfolio.word).map((item, i) => (
-          <p className="text-xs md:text-lg " key={`sentence${i}`}>
+          <p
+            className="text-xs md:text-lg lg:text-4xl lg:tracking-wider lg:leading-10"
+            key={`sentence${i}`}
+          >
             {item}
           </p>
         ))}
@@ -37,7 +41,7 @@ const PortfolioMain = ({}: PortfolioMainProps) => {
         <div className=" flex smooth justify-center items-center flex-col gap-y-4">
           <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
             <Popover.Trigger
-              className=" smooth"
+              className=" smooth border-none "
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
@@ -47,7 +51,7 @@ const PortfolioMain = ({}: PortfolioMainProps) => {
               </div>
             </Popover.Trigger>
             <Popover.Portal>
-              <Popover.Content className="PopoverContent text-zinc-400 text-sm">
+              <Popover.Content className=" border-none text-zinc-400 text-sm">
                 스크롤을 내려보세요!
               </Popover.Content>
             </Popover.Portal>

@@ -51,11 +51,11 @@ const Header = ({}: HeaderProps) => {
           </nav>
         </div>
         <div className="flex gap-4 lg:gap-8 ">
-          <input
+          {/* <input
             type="text"
             className=" rounded-xl pl-4 pr-2 py-1 dark:bg-zinc-700 lg:dark:bg-black dark:bg-opacity-90 dark:text-white bg-gray-200 focus:border-2 border-yellow-500  "
             placeholder="Search..."
-          />
+          /> */}
 
           <DarkModeToggleBtn />
         </div>
