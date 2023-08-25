@@ -23,8 +23,8 @@ const pageObjArray: PageList[] = [
   },
   { component: <ArticlePage article={article} /> },
   { component: <ProjectPage project={project} /> },
-  { component: <OtherExperiencePage /> },
   { component: <PeerFeedbackPage /> },
+  { component: <OtherExperiencePage /> },
 ];
 
 const MainFullPageComponent = () => {

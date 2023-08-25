@@ -30,7 +30,7 @@ const PortfolioMain = ({}: PortfolioMainProps) => {
       >
         {lineBreak(portfolio.word).map((item, i) => (
           <p
-            className="text-xs md:text-lg lg:text-4xl lg:tracking-wider lg:leading-10"
+            className=" text-xs md:text-3xl lg:text-4xl lg:tracking-wider lg:leading-10"
             key={`sentence${i}`}
           >
             {item}
