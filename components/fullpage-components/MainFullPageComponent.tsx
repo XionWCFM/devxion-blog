@@ -12,6 +12,7 @@ import {
   aboutme,
   channel,
   contact,
+  otherExperience,
   peerFeedback,
   project,
   study,
@@ -22,6 +23,7 @@ import ArticlePage from './pages/ArticlePage';
 import React from 'react';
 import useScrollToTop from '@/hooks/useScrollToTop';
 import StudyPage from './pages/StudyPage';
+import ContactAndChannelPage from './pages/ContactAndChannel';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
@@ -33,7 +35,8 @@ const pageObjArray: PageList[] = [
   { component: <ProjectPage project={project} /> },
   { component: <PeerFeedbackPage peer={peerFeedback} /> },
   { component: <StudyPage study={study} /> },
-  { component: <OtherExperiencePage /> },
+  { component: <OtherExperiencePage other={otherExperience} /> },
+  { component: <ContactAndChannelPage contact={contact} channel={channel} /> },
 ];
 
 const MainFullPageComponent = () => {
