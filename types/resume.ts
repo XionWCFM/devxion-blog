@@ -67,7 +67,7 @@ export interface OtherExperience extends ResumeType {
   itemList: Pick<ResumeItem, 'subject' | 'startDate' | 'endDate' | 'content'>[];
 }
 
-export interface PeerFeedback extends ResumeType {
+export interface PeerFeedback extends ResumeType, Description {
   type: 'peerFeedback';
   itemList: Pick<
     ResumeItem,

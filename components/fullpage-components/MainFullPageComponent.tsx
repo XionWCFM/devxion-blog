@@ -8,7 +8,13 @@ import MyInfoPage from './pages/MyInfoPage';
 import OtherExperiencePage from './pages/OtherExperiencePage';
 import PeerFeedbackPage from './pages/PeerFeedbackPage';
 import ProjectPage from './pages/ProjectPage';
-import { aboutme, channel, contact, project } from '@/datas/resume';
+import {
+  aboutme,
+  channel,
+  contact,
+  peerFeedback,
+  project,
+} from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
 import { article } from '@/datas/resume';
 import ArticlePage from './pages/ArticlePage';
@@ -23,7 +29,7 @@ const pageObjArray: PageList[] = [
   },
   { component: <ArticlePage article={article} /> },
   { component: <ProjectPage project={project} /> },
-  { component: <PeerFeedbackPage /> },
+  { component: <PeerFeedbackPage peer={peerFeedback} /> },
   { component: <OtherExperiencePage /> },
 ];
 

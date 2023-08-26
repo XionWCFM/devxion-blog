@@ -18,7 +18,7 @@ const ArticleCard = ({ articleItemList }: ArticleCardProps) => {
             <h4 className=" font-bold text-md overflow-hidden whitespace-nowrap break-words text-ellipsis">
               {item.subject}
             </h4>
-            <Paragraph className=" text-yellow-600 underline underline-offset-4 opacity-50 ">
+            <Paragraph className=" text-yellow-600 dark:text-yellow-400 underline underline-offset-4 opacity-50 dark:opacity-80 ">
               {item.createdAt}
             </Paragraph>
           </a>

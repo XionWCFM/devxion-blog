@@ -17,7 +17,7 @@ const ScrollButton = ({
     <Button
       onClick={() => pageButtonHandler(idx + 1)}
       className={cn(
-        'rounded-full w-4 h-4',
+        'rounded-full w-4 h-4  hover:animate-bounce hover:animate-ping transition-all duration-200',
         matchCss(currentPageNum, idx + 1) ? 'bg-yellow-500' : 'bg-gray-200',
       )}
     ></Button>
