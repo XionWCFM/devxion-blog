@@ -14,12 +14,14 @@ import {
   contact,
   peerFeedback,
   project,
+  study,
 } from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
 import { article } from '@/datas/resume';
 import ArticlePage from './pages/ArticlePage';
 import React from 'react';
 import useScrollToTop from '@/hooks/useScrollToTop';
+import StudyPage from './pages/StudyPage';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
@@ -30,6 +32,7 @@ const pageObjArray: PageList[] = [
   { component: <ArticlePage article={article} /> },
   { component: <ProjectPage project={project} /> },
   { component: <PeerFeedbackPage peer={peerFeedback} /> },
+  { component: <StudyPage study={study} /> },
   { component: <OtherExperiencePage /> },
 ];
 

@@ -62,7 +62,7 @@ export interface Contact extends ResumeType {
   itemList: Pick<ResumeItem, 'subject' | 'content'>[];
 }
 
-export interface OtherExperience extends ResumeType {
+export interface OtherExperience extends ResumeType, Description {
   type: 'otherExperience';
   itemList: Pick<ResumeItem, 'subject' | 'startDate' | 'endDate' | 'content'>[];
 }
