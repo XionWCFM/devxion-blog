@@ -30,7 +30,7 @@ interface HeaderProps {}
 
 const Header = ({}: HeaderProps) => {
   return (
-    <header className=" fixed pb-4 pt-3 smooth top-0 left-0 right-0 z-50 dark:bg-black bg-white">
+    <header className=" fixed pb-4 pt-3 smooth top-0 left-0 right-0 z-30 dark:bg-inherit lg:bg-white">
       <div className=" flex lg:flex-row flex-col items-center lg:justify-between gap-y-8 max-w-[1024px] mx-auto px-12 ">
         <div className=" flex items-center gap-12">
           <Link href={'/'}>
@@ -51,12 +51,6 @@ const Header = ({}: HeaderProps) => {
           </nav>
         </div>
         <div className="flex gap-4 lg:gap-8 ">
-          {/* <input
-            type="text"
-            className=" rounded-xl pl-4 pr-2 py-1 dark:bg-zinc-700 lg:dark:bg-black dark:bg-opacity-90 dark:text-white bg-gray-200 focus:border-2 border-yellow-500  "
-            placeholder="Search..."
-          /> */}
-
           <DarkModeToggleBtn />
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { Project } from '@/types/resume';
-
+import PlipImage1 from '../asset/plip/plip1.webp';
+import PlipImage2 from '../asset/plip/plip2.webp';
+import Devxion1 from '../asset/devxion/devxion1.png';
 const plip = {
   subject: 'PliP',
   startDate: '2023-06-29',
@@ -45,7 +47,7 @@ const plip = {
     'Suspense , Error Boundary 도입을 통한 로직 분리',
     'code spliting 및 lazy loading 적용',
   ],
-  asset: ['@/asset/plip/plip1.webp', '@/asset/plip/plip2.webp'],
+  asset: [PlipImage1, PlipImage2],
 };
 
 const devxionBlog = {
@@ -75,7 +77,7 @@ const devxionBlog = {
     'throttling을 통한 event 최적화',
     'Barrel Export 패턴 적용',
   ],
-  asset: ['@/asset/retrospect/retrospect.webp'],
+  asset: [Devxion1],
 };
 
 export const project: Project = {

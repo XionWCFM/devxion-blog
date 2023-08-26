@@ -34,7 +34,7 @@ const ScrollProgressBar = ({}: ScrollProgressBarProps) => {
 
   return (
     <div
-      className=" fixed h-1 w-full bg-zinc-400 top-0 left-0 ring-0 z-10"
+      className=" fixed h-1 w-full bg-zinc-400 top-0 left-0 ring-0 z-50"
       ref={progressRef}
     >
       <div

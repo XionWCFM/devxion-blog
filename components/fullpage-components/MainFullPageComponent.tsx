@@ -24,6 +24,7 @@ import React from 'react';
 import useScrollToTop from '@/hooks/useScrollToTop';
 import StudyPage from './pages/StudyPage';
 import ContactAndChannelPage from './pages/ContactAndChannel';
+import Footer from '../ui-components/Footer';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
@@ -47,6 +48,7 @@ const MainFullPageComponent = () => {
     <>
       <PageRenderer fullpageResult={fullpageResult} />
       <ScrollRenderer fullpageResult={fullpageResult} />
+      <Footer />
     </>
   );
 };

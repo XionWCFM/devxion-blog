@@ -124,13 +124,6 @@ export const peerFeedback: PeerFeedback = {
         [
           {
             highlight: false,
-            sentence:
-              '부트캠프 초창기 당시 거의 모든 사람들의 레포지토리를 탐방하며 궁금한 점을 적극적으로 물어보는 태도가 정말 좋았어요! ',
-          },
-        ],
-        [
-          {
-            highlight: false,
             sentence: '그리고 한 번 공부를 하기로 ',
           },
           {

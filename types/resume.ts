@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export type HighlightParagraph = { highlight: boolean; sentence: string }[][];
 
 interface HighlightDescription {
@@ -34,7 +36,7 @@ interface ResumeItem {
   }[];
   techStack: string[];
   role: string[];
-  asset: string[];
+  asset: StaticImageData[];
   createdAt: string;
 }
 
