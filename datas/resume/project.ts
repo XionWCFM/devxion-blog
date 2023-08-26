@@ -14,19 +14,19 @@ const plip = {
     '지도를 기반으로 여행 일정을 편리하게 관리할 수 있는 서비스입니다.',
   urlList: [
     {
-      type: 'deploy',
+      type: '배포 페이지 보러가기',
       url: 'https://plip.netlify.app',
     },
     {
-      type: 'github',
+      type: '소스코드 보러가기',
       url: 'https://github.com/codestates-seb/seb44_main_012',
     },
     {
-      type: 'post',
+      type: '프로젝트 회고 보러가기',
       url: 'https://xionwcfm.tistory.com/382',
     },
     {
-      type: 'youtube',
+      type: '기술 발표 구경하기(04:35 ~ 06:18)',
       url: 'https://www.youtube.com/watch?v=6rWULPkc6fM',
     },
   ],
@@ -61,21 +61,23 @@ const devxionBlog = {
   description: 'next.js의 app router를 이용해 구축한 블로그입니다.',
   urlList: [
     {
-      type: 'deploy',
+      type: '배포 페이지 보러가기',
       url: 'https://devxion-blog.vercel.app/',
     },
     {
-      type: 'github',
+      type: '소스코드 보러가기',
       url: 'https://github.com/XionWCFM/devxion-blog',
     },
   ],
   techStack: ['typescript', 'nextjs', 'tailwind-css'],
   role: [
-    'requestAnimationFrame과 TimeStamp를 활용한 typing 애니메이션 구현',
-    'intersectionObserver를 이용하여 typing reset 기능 구현',
-    'font layoutshift 최적화',
-    'throttling을 통한 event 최적화',
+    'Content internationalization을 고려하여 컴포넌트에서 콘텐츠를 분리',
+    'requestAnimationFrame과 TimeStamp를 활용하여 typing 애니메이션 구현',
+    'intersectionObserver와 Provider 패턴을 통해 fadein 애니메이션 구현',
+    'utility type "Pick"을 이용하여 중복 타이핑 최소화',
+    'throttling 구현을 통한 잦은 event 최적화',
     'Barrel Export 패턴 적용',
+    'next/font를 통해 font layoutshift 최적화',
   ],
   asset: [Devxion1],
 };

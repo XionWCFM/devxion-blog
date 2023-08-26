@@ -7,3 +7,4 @@ export * from './retrospect';
 export * from './study';
 export * from './article';
 export * from './aboutme';
+export * from './portfoliomain';

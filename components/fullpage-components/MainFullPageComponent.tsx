@@ -14,6 +14,7 @@ import {
   contact,
   otherExperience,
   peerFeedback,
+  portfoliomain,
   project,
   study,
 } from '@/datas/resume';
@@ -27,7 +28,7 @@ import ContactAndChannelPage from './pages/ContactAndChannel';
 import Footer from '../ui-components/Footer';
 const pageObjArray: PageList[] = [
   {
-    component: <PortfolioMain />,
+    component: <PortfolioMain sentence={portfoliomain} />,
   },
   {
     component: <MyInfoPage aboutme={aboutme} />,
