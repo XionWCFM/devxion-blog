@@ -4,10 +4,11 @@ import PageWrapper from '../PageWrapper';
 import HeadingParagraph from '@/components/atom-components/HeadingParagraph';
 import { Project } from '@/types/resume';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import Tag from '@/components/atom-components/Tag';
 interface ProjectPageProps {
   project: Project;
@@ -15,23 +16,24 @@ interface ProjectPageProps {
 const ProjectPage = ({ project }: ProjectPageProps) => {
   return (
     <PageWrapper>
-      <div className="">
-        <HeadingParagraph>{project.title}</HeadingParagraph>
-      </div>
-      <div className=""></div>
-      <div>dsa</div>
-      <Swiper navigation={true} modules={[Navigation]} className=" w-[70vw]">
+      <HeadingParagraph>{project.title}</HeadingParagraph>
+      <Swiper
+        navigation={true}
+        rewind={true}
+        modules={[Navigation, Pagination]}
+        pagination={{ clickable: true }}
+        className=" w-[70vw]"
+      >
         {project.itemList.map((item, idx) => (
           <SwiperSlide
             key={`test${idx}`}
-            className=" text-zinc-500 flex justify-center items-center w-full border border-zinc-500"
+            className="   w-full border border-zinc-500"
           >
             <div className=" border border-yellow-400 h-[70vh] flex flex-col ">
-              <HeadingParagraph size={'xs'} className="text-center">
+              <HeadingParagraph size={'xs'} className="">
                 {item.subject}
               </HeadingParagraph>
               <div className="">
-                <div className=" font-extrabold ">프로젝트 설명</div>
                 <div className="">{item.description}</div>
               </div>
               <div className=" flex gap-2">

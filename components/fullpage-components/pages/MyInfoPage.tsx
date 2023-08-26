@@ -14,23 +14,23 @@ const MyInfoPage = ({ aboutme }: MyInfoPageProps) => {
   return (
     <PageWrapper>
       <FadeInProvider>
-        <HeadingParagraph className=" mt-6 smooth">
-          {aboutme.title}
-        </HeadingParagraph>
-        {aboutme.descriptionArray.map((paragraph, i) => (
-          <Paragraph
-            key={`aboutme${i}`}
-            className=" my-1 text-zinc-700 dark:text-zinc-100 lg:text-xl"
-          >
-            {paragraph}
-          </Paragraph>
-        ))}
+        <HeadingParagraph className="">{aboutme.title}</HeadingParagraph>
+        <div className=" my-10 mb-2 lg:mb-6 border-l-2 border-yellow-500 pl-3">
+          {aboutme.descriptionArray.map((paragraph, i) => (
+            <Paragraph
+              key={`aboutme${i}`}
+              className=" my-1 text-zinc-700 dark:text-zinc-100 lg:text-xl"
+            >
+              {paragraph}
+            </Paragraph>
+          ))}
+        </div>
 
-        <div className=" flex flex-col flex-wrap  gap-12 md:gap-8 mt-8">
+        <div className=" grid grid-cols-1 xl:grid-cols-2 mt-2 lg:mt-4  lg:gap-12 gap-4">
           {aboutme.itemList.map((item, idx) => (
-            <div key={`aboutme${idx}`} className=" flex flex-col">
+            <div key={`aboutme${idx}`} className=" flex flex-col my-2 lg:my-4">
               <HeadingParagraph size={'xs'}>{item.subject}</HeadingParagraph>
-              <div className=" flex flex-col gap-2">
+              <div className=" flex flex-col gap-2 mt-1 lg:mt-3">
                 {lineBreak(item.content).map((sentence, idx) => (
                   <Paragraph key={`line${idx}`}>{sentence}</Paragraph>
                 ))}

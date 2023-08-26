@@ -8,12 +8,22 @@ import MyInfoPage from './pages/MyInfoPage';
 import OtherExperiencePage from './pages/OtherExperiencePage';
 import PeerFeedbackPage from './pages/PeerFeedbackPage';
 import ProjectPage from './pages/ProjectPage';
-import { aboutme, channel, contact, project } from '@/datas/resume';
+import {
+  aboutme,
+  channel,
+  contact,
+  otherExperience,
+  peerFeedback,
+  project,
+  study,
+} from '@/datas/resume';
 import PortfolioMain from './pages/PortfolioMain';
 import { article } from '@/datas/resume';
 import ArticlePage from './pages/ArticlePage';
 import React from 'react';
 import useScrollToTop from '@/hooks/useScrollToTop';
+import StudyPage from './pages/StudyPage';
+import ContactAndChannelPage from './pages/ContactAndChannel';
 const pageObjArray: PageList[] = [
   {
     component: <PortfolioMain />,
@@ -23,8 +33,10 @@ const pageObjArray: PageList[] = [
   },
   { component: <ArticlePage article={article} /> },
   { component: <ProjectPage project={project} /> },
-  { component: <OtherExperiencePage /> },
-  { component: <PeerFeedbackPage /> },
+  { component: <PeerFeedbackPage peer={peerFeedback} /> },
+  { component: <StudyPage study={study} /> },
+  { component: <OtherExperiencePage other={otherExperience} /> },
+  { component: <ContactAndChannelPage contact={contact} channel={channel} /> },
 ];
 
 const MainFullPageComponent = () => {

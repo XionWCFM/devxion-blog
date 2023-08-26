@@ -62,12 +62,12 @@ export interface Contact extends ResumeType {
   itemList: Pick<ResumeItem, 'subject' | 'content'>[];
 }
 
-export interface OtherExperience extends ResumeType {
+export interface OtherExperience extends ResumeType, Description {
   type: 'otherExperience';
   itemList: Pick<ResumeItem, 'subject' | 'startDate' | 'endDate' | 'content'>[];
 }
 
-export interface PeerFeedback extends ResumeType {
+export interface PeerFeedback extends ResumeType, Description {
   type: 'peerFeedback';
   itemList: Pick<
     ResumeItem,

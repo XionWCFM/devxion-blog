@@ -37,6 +37,7 @@ const useAnimation = (
     target: targetRef,
     onIntersect: onIntersectHandler,
     offIntersect: offIntersectHandler,
+    threshold: 0.15,
   });
 
   return [targetRef];

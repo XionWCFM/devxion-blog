@@ -20,11 +20,6 @@ const nextjsdocs = {
         highlight: false,
         sentence: '⬆',
       },
-      {
-        highlight: true,
-        sentence:
-          '👱‍♂️[Repository 보러가기](https://github.com/XionWCFM/Nextjs-docs-Korean-translation)',
-      },
     ],
     [
       {
@@ -37,11 +32,11 @@ const nextjsdocs = {
       },
       {
         highlight: true,
-        sentence: '20 여명',
+        sentence: ' 20 여명 ',
       },
       {
         highlight: false,
-        sentence: '의 스터디원들과 함께 한글 번역한 프로젝트',
+        sentence: '의 스터디원들과 함께 한글 번역한 스터디입니다.',
       },
     ],
   ],
@@ -68,11 +63,17 @@ const effectiveTypescriptStudy = {
       },
       {
         highlight: true,
-        sentence: '상표 표기법, private 키워드와 #키워드의 차이',
+        sentence: ' 상표 표기법, private 키워드와 #키워드의 차이 ',
       },
       {
         highlight: false,
-        sentence: '등 타입스크립트를 좀 더 깊이 알 수 있었습니다.',
+        sentence: '등',
+      },
+    ],
+    [
+      {
+        highlight: false,
+        sentence: '타입스크립트를 조금 더 깊이 알 수 있었습니다.',
       },
     ],
   ],
@@ -96,15 +97,22 @@ const reactStudy = {
     [
       {
         highlight: false,
-        sentence: '스터디를 진행하면서',
+        sentence: '저는 스터디를 진행하면서',
       },
       {
         highlight: true,
-        sentence: 'servercomponent, concurrency render',
+        sentence: ' servercomponent, concurrency render ',
       },
       {
         highlight: false,
-        sentence: '등 react 18 version의 기능들에 대한 이해를 얻었습니다.',
+        sentence: '등',
+      },
+    ],
+    [
+      {
+        highlight: false,
+        sentence:
+          'react 18 version의 기능들에 대해 조금 더 잘 알아볼 수 있었어요.',
       },
     ],
   ],
@@ -117,17 +125,17 @@ export const study: Study = {
     [
       {
         highlight: true,
-        sentence: '좋은 사람들이 모여서 만드는 시너지',
+        sentence: '저는 좋은 사람들이 모여서 만드는 시너지',
       },
       {
         highlight: false,
-        sentence: '를 좋아하는 저는',
+        sentence: '를 좋아해요',
       },
     ],
     [
       {
         highlight: false,
-        sentence: '부트캠프를 진행하는 동안',
+        sentence: '그래서 부트캠프를 수강하는 동안',
       },
       {
         highlight: true,
@@ -135,7 +143,17 @@ export const study: Study = {
       },
       {
         highlight: false,
-        sentence: '해왔습니다.',
+        sentence: '해왔어요',
+      },
+    ],
+    [
+      {
+        highlight: true,
+        sentence: '각 스터디 카드 ',
+      },
+      {
+        highlight: false,
+        sentence: '를 클릭하면 해당 스터디의 레포지토리가 새창으로 띄워집니다!',
       },
     ],
   ],

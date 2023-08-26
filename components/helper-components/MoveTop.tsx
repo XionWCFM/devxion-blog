@@ -11,7 +11,7 @@ const MoveTop = ({}: MoveTopProps) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <div className="invisible md:visible fixed bottom-6 right-12 md:right-16 lg:right-24 transition-all hover:scale-125 duration-300">
+    <div className="invisible md:visible hover:animate-pulse fixed bottom-6 right-12 md:right-16 lg:right-24 transition-all hover:scale-125 duration-300">
       <button
         onClick={moveTopHandler}
         className="   rounded-full p-5 bg-yellow-500 dark:bg-yellow-500"
