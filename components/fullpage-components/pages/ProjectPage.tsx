@@ -26,7 +26,7 @@ const ProjectPage = ({ project }: ProjectPageProps) => {
           {project.itemList.map((item, idx) => (
             <article
               key={`pj${idx}`}
-              className=" border border-zinc-400 my-6 border-dotted rounded-md shadow-md flex flex-col-reverse lg:flex-row items-center justify-between p-8"
+              className=" border border-zinc-400 my-12 border-dotted rounded-md shadow-md flex flex-col-reverse lg:flex-row items-center justify-between p-8 duration-500 transition-all hover:scale-105"
             >
               <div className=" lg:border-r lg:pr-8 lg:min-w-[60%] lg:max-w-[60%]">
                 <HeadingParagraph className=" font-black mt-4" size={'xs'}>
@@ -55,11 +55,13 @@ const ProjectPage = ({ project }: ProjectPageProps) => {
                     </a>
                   ))}
                 </div>
+                <div className=" mt-4 mb-6 lg:mt-8 lg:mb-12">
+                  <LineBreakParagraph
+                    str={item.description}
+                    className="text-xs text-zinc-400 lg:text-xs dark:text-zinc-300"
+                  />
+                </div>
 
-                <LineBreakParagraph
-                  str={item.description}
-                  className="text-xs text-zinc-400 lg:text-xs dark:text-zinc-300 mt-2 mb-6 lg:mb-12"
-                />
                 <div className=" flex flex-col gap-y-4">
                   {item.role.map((role, idx) => (
                     <p
