@@ -31,13 +31,9 @@ interface HeaderProps {}
 const Header = ({}: HeaderProps) => {
   return (
     <header className=" fixed pb-4 pt-3 smooth top-0 left-0 right-0 z-30 dark:bg-inherit lg:bg-white">
-      <div className=" flex lg:flex-row flex-col items-center lg:justify-between gap-y-8 max-w-[1024px] mx-auto px-12 ">
+      <div className=" flex lg:flex-row flex-col items-center gap-y-8 justify-center max-w-[1024px]  mx-auto px-12 ">
         <div className=" flex items-center gap-12">
-          <Link href={'/'}>
-            <p className=" font-extrabold text-5xl cursor-pointer transition-all duration-500 ">
-              xion
-            </p>
-          </Link>
+          <DarkModeToggleBtn />
           <nav className=" gap-4 lg:gap-8 grid grid-cols-2 lg:flex lg:flex-row lg:items-start items-end">
             {navigateArray.map((item) => (
               <Link
@@ -49,9 +45,6 @@ const Header = ({}: HeaderProps) => {
               </Link>
             ))}
           </nav>
-        </div>
-        <div className="flex gap-4 lg:gap-8 ">
-          <DarkModeToggleBtn />
         </div>
       </div>
     </header>
