@@ -14,6 +14,7 @@ import {
   contact,
   otherExperience,
   peerFeedback,
+  portfoliomain,
   project,
   study,
 } from '@/datas/resume';
@@ -24,9 +25,10 @@ import React from 'react';
 import useScrollToTop from '@/hooks/useScrollToTop';
 import StudyPage from './pages/StudyPage';
 import ContactAndChannelPage from './pages/ContactAndChannel';
+import Footer from '../ui-components/Footer';
 const pageObjArray: PageList[] = [
   {
-    component: <PortfolioMain />,
+    component: <PortfolioMain sentence={portfoliomain} />,
   },
   {
     component: <MyInfoPage aboutme={aboutme} />,
@@ -47,6 +49,7 @@ const MainFullPageComponent = () => {
     <>
       <PageRenderer fullpageResult={fullpageResult} />
       <ScrollRenderer fullpageResult={fullpageResult} />
+      <Footer />
     </>
   );
 };

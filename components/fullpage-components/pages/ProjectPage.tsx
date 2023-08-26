@@ -4,66 +4,105 @@ import PageWrapper from '../PageWrapper';
 import HeadingParagraph from '@/components/atom-components/HeadingParagraph';
 import { Project } from '@/types/resume';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
+import FadeInProvider from '@/components/helper-components/FadeInProvider';
+import { betweenTilde } from '@/utils/betweenTilde';
+import Image from 'next/image';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Tag from '@/components/atom-components/Tag';
+import LineBreakParagraph from '@/components/helper-components/LineBreakParagraph';
+
 interface ProjectPageProps {
   project: Project;
 }
 const ProjectPage = ({ project }: ProjectPageProps) => {
   return (
     <PageWrapper>
-      <HeadingParagraph>{project.title}</HeadingParagraph>
-      <Swiper
-        navigation={true}
-        rewind={true}
-        modules={[Navigation, Pagination]}
-        pagination={{ clickable: true }}
-        className=" w-[70vw]"
-      >
-        {project.itemList.map((item, idx) => (
-          <SwiperSlide
-            key={`test${idx}`}
-            className="   w-full border border-zinc-500"
-          >
-            <div className=" border border-yellow-400 h-[70vh] flex flex-col ">
-              <HeadingParagraph size={'xs'} className="">
-                {item.subject}
-              </HeadingParagraph>
-              <div className="">
-                <div className="">{item.description}</div>
+      <FadeInProvider>
+        <HeadingParagraph>{project.title}</HeadingParagraph>
+        <div className="">
+          {project.itemList.map((item, idx) => (
+            <article
+              key={`pj${idx}`}
+              className=" border border-zinc-400 my-12 border-dotted rounded-md shadow-md flex flex-col-reverse lg:flex-row items-center justify-between p-8 duration-500 transition-all hover:scale-105"
+            >
+              <div className=" lg:border-r lg:pr-8 lg:min-w-[60%] lg:max-w-[60%]">
+                <HeadingParagraph className=" font-black mt-4" size={'xs'}>
+                  {item.subject}
+                </HeadingParagraph>
+                <div className=" text-zinc-400 text-xs dark:text-zinc-300">
+                  <span>{betweenTilde(item.startDate, item.endDate)}</span>{' '}
+                  <span>{item.team.significant}</span>
+                </div>
+                <div className=" mt-2 flex flex-wrap gap-y-1">
+                  {item.techStack.map((tech, idx) => (
+                    <span
+                      key={`${idx}${tech}`}
+                      className=" cursor-pointer duration-500 transition-all hover:rotate-6 hover:scale-105 text-xs px-2 py-1 rounded-sm mr-1 bg-yellow-500 text-zinc-100"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className=" grid grid-cols-1 lg:grid-cols-2 gap-2 my-4">
+                  {item.urlList.map((link, idx) => (
+                    <a key={link.url} target="_blank" href={link.url}>
+                      <p className=" transition-all duration-500 hover:rotate-3 text-zinc-400 dark:text-zinc-300 text-xs border-2 border-dotted px-2 py-1">
+                        {link.type}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+                <div className=" mt-4 mb-6 lg:mt-8 lg:mb-12">
+                  <LineBreakParagraph
+                    str={item.description}
+                    className="text-xs text-zinc-400 lg:text-xs dark:text-zinc-300"
+                  />
+                </div>
+
+                <div className=" flex flex-col gap-y-4">
+                  {item.role.map((role, idx) => (
+                    <p
+                      key={role}
+                      className=" font-extrabold text-zinc-400 underline underline-offset-2 lg:underline-offset-8 decoration-wavy decoration-yellow-500 dark:text-zinc-300"
+                    >
+                      {role}
+                    </p>
+                  ))}
+                </div>
               </div>
-              <div className=" flex gap-2">
-                <span>프로젝트 기간</span>
-                <span>{item.startDate}</span>
-                <span>~</span>
-                <span>{item.endDate}</span>
-                <span>{item.team.significant}</span>
+              <div className=" lg:pl-4">
+                <Swiper
+                  className=" w-[50vw] lg:w-[25vw]"
+                  navigation={true}
+                  rewind={true}
+                  modules={[Navigation, Pagination, Autoplay]}
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                >
+                  {item.asset.map((img, idx) => (
+                    <SwiperSlide key={`${img}`}>
+                      <div className="">
+                        <Image
+                          src={img}
+                          alt={'portfolio image'}
+                          width={500}
+                          height={250}
+                          className={
+                            'rounded-md  hover:scale-105 transition-transform ease-in-out duration-500 object-cover w-[500px] h-[250px]'
+                          }
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
-              <div className=""></div>
-              <div className="">
-                <span>역할</span>
-                {item.role.map((role, idx) => (
-                  <div className="" key={`role${idx}`}>
-                    {role}
-                  </div>
-                ))}
-              </div>
-              <div className="">
-                <span></span>
-              </div>
-              <div className=" flex gap-2 text-xs flex-wrap">
-                {item.techStack.map((tech, idx) => (
-                  <Tag key={`tech${idx}`}>{tech}</Tag>
-                ))}
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </article>
+          ))}
+        </div>
+      </FadeInProvider>
     </PageWrapper>
   );
 };

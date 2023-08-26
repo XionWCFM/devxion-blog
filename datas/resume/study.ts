@@ -39,6 +39,20 @@ const nextjsdocs = {
         sentence: '의 스터디원들과 함께 한글 번역한 스터디입니다.',
       },
     ],
+    [
+      {
+        highlight: false,
+        sentence: '10 여 건의 문서 번역을 진행하였고 ',
+      },
+      {
+        highlight: true,
+        sentence: 'route group , caching',
+      },
+      {
+        highlight: false,
+        sentence: ' 등에 익숙해질 수 있었습니다.',
+      },
+    ],
   ],
 };
 
@@ -144,6 +158,21 @@ export const study: Study = {
       {
         highlight: false,
         sentence: '해왔어요',
+      },
+    ],
+
+    [
+      {
+        highlight: false,
+        sentence: '아래에 보이는 카드들은 제가 ',
+      },
+      {
+        highlight: true,
+        sentence: '현재 진행하고 있는 스터디 ',
+      },
+      {
+        highlight: false,
+        sentence: '들이에요',
       },
     ],
     [

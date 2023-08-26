@@ -30,6 +30,7 @@ const PeerFeedbackPage = ({ peer }: PeerFeedbackProps) => {
               <div className="">
                 <HighlightSentence
                   highlightParagraph={item.hightlightContent}
+                  className=" text-xs lg:text-xs hover:text-sm duration-500 transition-all"
                 />
               </div>
             </div>

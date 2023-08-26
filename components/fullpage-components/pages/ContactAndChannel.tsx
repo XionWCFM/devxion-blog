@@ -25,7 +25,7 @@ const ContactAndChannelPage = ({ contact, channel }: ContactPageProps) => {
           {channel.itemList.map((item, idx) => (
             <div
               key={`channel${idx}`}
-              className=" transition-all duration-500 hover:scale-105 border-l-2 px-3"
+              className=" transition-all duration-500 hover:scale-105  hover:-skew-x-2 border-l-2 px-3"
             >
               <HeadingParagraph size={'xs'}>
                 <a href={item.url} className=" mt-4" target="_blank">

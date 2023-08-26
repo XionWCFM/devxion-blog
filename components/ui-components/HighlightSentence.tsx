@@ -16,16 +16,16 @@ const HighlightSentence = ({
   className,
 }: HighlightSentenceProps) => {
   return (
-    <div className={cn(' leading-8', className)}>
+    <div className={cn('text-xs lg:text-base leading-8', className)}>
       {highlightParagraph.map((item, idx) => (
-        <div key={`hi${idx}`}>
+        <div key={`hi${idx}`} className="">
           {item.map((highlightObj, i) => {
             if (highlightObj.highlight) {
               return (
                 <span
                   key={`highlight${i}`}
                   className={cn(
-                    'text-yellow-500 dark:text-yellow-400 font-bold text-xs lg:text-base',
+                    'text-yellow-500 dark:text-yellow-400 font-bold',
                     highlightStyle,
                   )}
                 >
@@ -36,10 +36,7 @@ const HighlightSentence = ({
             return (
               <span
                 key={`highlight${i}`}
-                className={cn(
-                  ' text-xs lg:text-base text-zinc-400 dark:text-zinc-300',
-                  normalStyle,
-                )}
+                className={cn(' text-zinc-400 dark:text-zinc-300', normalStyle)}
               >
                 {highlightObj.sentence}
               </span>
