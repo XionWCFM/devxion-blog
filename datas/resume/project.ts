@@ -72,7 +72,6 @@ const devxionBlog = {
   ],
   techStack: ['typescript', 'nextjs', 'tailwind-css'],
   role: [
-    'Content internationalization을 고려하여 컴포넌트에서 모든 콘텐츠를 분리',
     'requestAnimationFrame과 TimeStamp를 활용하여 typing 애니메이션 구현',
     'intersectionObserver와 Provider 패턴을 통해 fadein 애니메이션 구현',
     'utility type "Pick"을 이용하여 중복 타이핑 최소화',
